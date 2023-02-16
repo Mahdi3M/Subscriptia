@@ -2553,6 +2553,8 @@ label {
 ---------------------------*/
 
 #footer_one {
+    position: sticky;
+    top: 100vh;
     padding: 70px 0;
     background-color: #f6f6f6;
 }
@@ -2621,6 +2623,8 @@ label {
 /* --CopyRight Area-- */
 
 #copyright_one {
+    position: sticky;
+    top: 100vh;
     padding: 15px 0;
     border-top: 1px solid #ededed;
     background: #000
