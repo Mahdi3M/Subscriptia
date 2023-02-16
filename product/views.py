@@ -9,6 +9,4 @@ def index(request):
 
 def product_single(request, product_id):
     return render(request, 'product_single.html', {})
-=======
-    return render(request,'home.html')
 >>>>>>> Stashed changes
