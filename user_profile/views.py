@@ -1,22 +1,30 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
 
 # Create your views here.
 
-def login(request):
+def log_in(request):
+    form_error = None
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
+        print()
 
         user = authenticate(username=username, password=password)
-
+        
         if user is not None:
+            print("Logged in.")
             login(request, user)
-            return render(request, "") #Product er dashboard
+            return HttpResponse("Dashboard") #Product er dashboard
         else:
-            return redirect('login')
-    return render(request, "user_profile/login.html")
+            print("Wrong input.")
+            form_error = "Username or Password is wrong."
+            return render(request, "user_profile/login.html", {'form_error': form_error})
+    print("logged out")
+    logout(request)
+    return render(request, "user_profile/login.html", {'form_error': form_error})
 
 
 def register(request):
@@ -29,11 +37,12 @@ def register(request):
         email_exist = User.objects.filter(email=email).exists()
         if not email_exist:
             try:
+                print(username, email, password)
                 myuser = User.objects.create_user(username, email, password)
                 myuser.save()
                 return redirect('login')
             except Exception:
-                form_error = "User name already taken."
+                form_error = "Username already taken."
                 return render(request, "user_profile/register.html", {'form_error': form_error})
         else:
             form_error = "Email already taken."

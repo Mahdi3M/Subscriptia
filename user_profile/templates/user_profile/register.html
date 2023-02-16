@@ -30,8 +30,8 @@
               <input type="text" class="form-control" name="username" />
             </div>
             <div class="default-form-box">
-              <label>Email </label>
-              <input type="text" class="form-control" name="email" />
+              <label>Email <span>*</span></label>
+              <input type="email" class="form-control" name="email" required/>
             </div>
             <div class="default-form-box">
               <label>Passwords <span>*</span></label>
@@ -46,7 +46,7 @@
               </button>
             </div>
           </form>
-          {% if form_error == True %} Username already taken. {% endif %}
+          {% if form_error %} {{ form_error }} {% endif %}
         </div>
       </div>
     </div>
