@@ -1,0 +1,132 @@
+
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+ <!-- Banner Area -->
+ <section id="my-account_area" class="ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-3">
+                    <!-- Nav tabs -->
+                    <div class="dashboard_tab_button" >
+                        <ul role="tablist" class="nav flex-column dashboard-list" >
+                           <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders" >Netflix
+                            </a></li>
+                            <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Spotify</a></li>
+                             <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Udemy</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-10 col-md-10 col-lg-7">
+                    <!-- Tab panes -->
+                    <div class="tab-content dashboard_content">
+                        <div class="tab-pane fade" id="orders">
+                            <div class="myaccount-content">
+                                <h4 class="title"> </h4>
+                                    <form method="POST">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-8">
+                                            <div class="form-group">
+                                                <label for="email">Email Address</label>
+                                                <input class="form-control"  type="email" id="email"
+                                                    placeholder="info@gmail.com *" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-8">
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input class="form-control"  type="password" id="Password"
+                                                    placeholder="password *" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="cart_submit">
+                                            <center><button class="theme-btn-one btn-black-overlay btn_sm" type="submit">Verify</button></center>
+
+                                        </div>
+
+
+                                        <div class="cart_submit">
+                                            <button class="theme-btn-one btn-black-overlay btn_sm" type="submit">Remove</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                            </div>
+
+
+                        </div>
+
+                      </div>
+    </section>
+
+              <div class="col-lg-10 " style="padding-left:26%;padding-bottom: 10%;">
+                    <div class="order_review  box-shadow bg-white" >
+                        <div class="check-heading">
+                            <h3>Details</h3>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Remove</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td class="product_remove" style="padding-left:7% ;"><a href="#"><i class="far fa-trash-alt"></i></a></td>
+                                        <td>Blue Dress For Woman </td>
+                                        <td>$90.00</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                        <td></td>
+                                        <th style="padding-left: 40%;">Total</th>
+                                        <td class="product-subtotal">$349.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="order_review bg-white">
+                        <div class="check-heading">
+                            <h3>Payment</h3>
+                        </div>
+                        <div class="payment_method">
+                            <div class="payment_option">
+                                <div class="custome-radio">
+                                    <input class="form-check-input" required="" type="radio" name="payment_option"
+                                        id="exampleRadios3" value="option3" checked="">
+                                    <label class="form-check-label" for="exampleRadios3">Card Payment</label>
+                                </div>
+                                <div class="custome-radio">
+                                    <input class="form-check-input" type="radio" name="payment_option"
+                                        id="exampleRadios4" value="option4">
+                                    <label class="form-check-label" for="exampleRadios4">BKash  Payment</label>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+                            <center>
+                            <a href="#!" class="theme-btn-one btn-black-overlay btn_sm">Place Order</a></center>
+                        </div>
+
+
+
+   
+{% endblock %}
