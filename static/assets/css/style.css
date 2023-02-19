@@ -2019,8 +2019,8 @@ Top Header Area CSS
 ---------------------------*/
 
 #banner_one {
-    background-image: url('../img/common/banner3.jpg');
-    padding: 200px 0;
+    background-image: url('../img/common/banner3copy.jpg');
+    padding: 170px 0;
     display: flex;
     align-items: center;
     background-size: cover;
@@ -2171,7 +2171,7 @@ Top Header Area CSS
 ---------------------------*/
 
 #offer_timer_one {
-    background-image: url('../img/offer/t-shirt.png');
+    background-image: url('../img/offer/offers.jpg');
     background-size: cover;
     background-position: center;
     padding: 145px 0;
