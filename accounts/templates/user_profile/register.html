@@ -34,7 +34,7 @@
               <input type="email" class="form-control" name="email" required/>
             </div>
             <div class="default-form-box">
-              <label>Passwords <span>*</span></label>
+              <label>Password <span>*</span></label>
               <input type="password" class="form-control" name="password" />
             </div>
             <div class="login_submit">
@@ -46,7 +46,7 @@
               </button>
             </div>
           </form>
-          {% if form_error %} {{ form_error }} {% endif %}
+          {% if form_msg %} {{ form_msg }} {% endif %}
         </div>
       </div>
     </div>
