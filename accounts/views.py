@@ -24,10 +24,9 @@ def log_in(request):
         else:
             print("Wrong input.")
             form_msg = "Username or Password is wrong."
-            return render(request, "user_profile/login.html", {'form_msg': form_msg})
+            return render(request, "accounts/login.html", {'form_msg': form_msg})
     print("logged out")
-    logout(request)
-    return render(request, "user_profile/login.html", {'form_msg': form_msg})
+    return render(request, "accounts/login.html", {'form_msg': form_msg})
 
 
 def register(request):
@@ -47,17 +46,29 @@ def register(request):
                 return redirect('login')
             except Exception:
                 form_msg = "Username already taken."
-                return render(request, "user_profile/register.html", {'form_msg': form_msg})
+                return render(request, "accounts/register.html", {'form_msg': form_msg})
         else:
             form_msg = "Email already taken."
-            return render(request, "user_profile/register.html", {'form_msg': form_msg})
+            return render(request, "accounts/register.html", {'form_msg': form_msg})
 
-    return render(request, "user_profile/register.html", {'form_msg': form_msg})
+    return render(request, "accounts/register.html", {'form_msg': form_msg})
 
 
 def log_out(request):
     logout(request)
     return redirect('login')
+
+def profile(request):
+    user = request.user
+    if request.method == "POST":
+        user.first_name = request.POST.get('first-name')
+        user.last_name = request.POST.get('last-name')
+        user.email = request.POST.get('email-name')
+        pword = request.POST.get('user-password')
+        if pword is not (None or ""):
+            user.password = pword
+        user.save()
+    return render(request, "accounts/profile.html", {"user": user})
 
 
 
