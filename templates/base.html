@@ -110,7 +110,13 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="my-account.html">My Account</a></li>
+                        {% if user.is_authenticated %} 
+                            <li><a href="my-account.html">{{request.user.username}}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>

@@ -18,7 +18,7 @@ def log_in(request):
             print("Logged in.")
             login(request, user)
             if user.is_customer:
-                return HttpResponse("Customer Dashboard") #Product er dashboard
+                return render(request,"home.html")
             elif user.is_employee:
                 return HttpResponse("Employee Dashboard")
         else:
