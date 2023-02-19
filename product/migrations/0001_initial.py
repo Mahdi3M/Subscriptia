@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
                 ('slug', models.SlugField(unique=True)),
-                ('rating', models.PositiveIntegerField(validators=[product.models.validate_even])),
+                ('rating', models.PositiveIntegerField()),
                 ('review', models.CharField(max_length=500)),
                 ('is_wishlist', models.BooleanField(default=False)),
                 ('is_cart', models.BooleanField(default=False)),

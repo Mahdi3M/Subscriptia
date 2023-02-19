@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Banner Area -->
+<section id="common_banner_one">
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="common_banner_text">
+                    <h2>Add Product</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><i class="fas fa-slash"></i></li>
+                        <li class="active">Add Product</li>
+                    </ul>
+                    <ul>
+                        <div class="col-lg-12">
+                            <div class="image-input">
+                                {{product.banner}}                                    
+                                <label for="id_banner" class="image-button">
+                                    <i class="fa fa-image"></i>Choose Banner Image</label>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Product Area -->
+<section id="add_product_area" class="ptb-100" onload='getInputElements()'>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="add_product_wrapper">
+                    <div class="back_to_area">
+                        <a href="vendor.html"><i class="fas fa-long-arrow-alt-left"></i> Back To Dashboard</a>
+                    </div>
+                    <h3>Add Product</h3>
+                    <form action="" method="post" enctype="multipart/form-data" class="add_product_form" getInputElements>
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Basic Information</h4>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="image-input">
+                                    {{product.image}}                                    
+                                    <label for="id_image" class="image-button">
+                                    <i class="fa fa-image"></i>Choose Image</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="fotm-group">
+                                    <label for="id_name">Product Name*</label>
+                                    {{product.name}}
+                                    <script>
+                                        document.getElementById("id_name").classList += "form-control";
+                                    </script>
+                                    {% comment %} <input type="text" id="product_name" class="form-control"
+                                        placeholder="T-Shirt Form Girls"> {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="fotm-group">
+                                    <label for="id_description">Product Description*</label>
+                                    {{product.description}}
+                                    <script>
+                                        document.getElementById("id_description").classList = "form-control";
+                                    </script>
+                                    {% comment %} <input type="text" id="product_name" class="form-control"
+                                        placeholder="T-Shirt Form Girls"> {% endcomment %}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4 style="margin-top: 50px; margin-bottom: 20px;">Categories</h4>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="fotm-group">
+                                    {{product.category}}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4 style="margin-top: 50px; margin-bottom: 20px;">Subscription Plan</h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="fotm-group">
+                                    <label for="id_plan_name">Plan Name*</label>
+                                    {{product.plan_name}}
+                                    <script>
+                                        document.getElementById("id_plan_name").classList += "form-control";
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="fotm-group">
+                                    <label for="id_marked_price">Price*</label>
+                                    {{product.price}}
+                                    <script>
+                                        document.getElementById("id_price").classList += "form-control";
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="fotm-group">
+                                    <label for="id_discount">Discount*</label>
+                                    {{product.discount}}
+                                    <script>
+                                        document.getElementById("id_discount").classList += "form-control";
+                                    </script>
+                                </div>
+                            </div>                            
+                            <div class="col-lg-12">
+                                <div class="btn_right_table">
+                                    <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
