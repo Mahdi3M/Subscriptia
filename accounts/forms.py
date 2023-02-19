@@ -1,6 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from .models import User, Profile
+
+class ProfileForm(forms.Form):
+    class meta:
+        models = Profile
+        fields = '__all__'
 
 class LoginForm(forms.Form):
     username = forms.CharField(

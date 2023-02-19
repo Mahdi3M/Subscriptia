@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
-from .models import User
+from .models import User, Profile
 
 # Create your views here.
 
@@ -39,10 +39,10 @@ def register(request):
         email_exist = User.objects.all().filter(email=email).exists()
         if not email_exist:
             try:
-                print(username, email, password)
                 myuser = User.objects.create_user(username=username, email=email, password=password)
-                print(myuser)
                 myuser.save()
+                profile = Profile(user=myuser)
+                profile.save()
                 return redirect('login')
             except Exception:
                 form_msg = "Username already taken."
@@ -60,6 +60,7 @@ def log_out(request):
 
 def profile(request):
     user = request.user
+    profile = Profile.objects.get(user=user)
     if request.method == "POST":
         user.first_name = request.POST.get('first-name')
         user.last_name = request.POST.get('last-name')
@@ -68,7 +69,12 @@ def profile(request):
         if pword is not (None or ""):
             user.password = pword
         user.save()
-    return render(request, "accounts/profile.html", {"user": user})
+        if request.FILES['image-file']:
+            image_file = request.FILES['image-file']
+            profile.image = image_file
+        profile.dob = request.POST.get('birthday')
+        profile.save()
+    return render(request, "accounts/profile.html", {"user": user, "profile":profile})
 
 
 
