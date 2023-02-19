@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- Register-Area -->
+<section id="login_area" class="ptb-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 col-12">
+        <div class="account_form">
+          <h3>Register</h3>
+          <form action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
+            <div class="default-form-box">
+              <label>Username <span>*</span></label>
+              <input type="text" class="form-control" name="username" />
+            </div>
+            <div class="default-form-box">
+              <label>Email <span>*</span></label>
+              <input type="email" class="form-control" name="email" required/>
+            </div>
+            <div class="default-form-box">
+              <label>Password <span>*</span></label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <div class="login_submit">
+              <button
+                class="theme-btn-one btn-black-overlay btn_md"
+                type="submit"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+          {% if form_msg %} {{ form_msg }} {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
