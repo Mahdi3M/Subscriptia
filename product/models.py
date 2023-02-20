@@ -15,6 +15,7 @@ class Product(models.Model):
     description = models.TextField(max_length=1000, default="")
     slug = models.SlugField(unique=True, max_length=30)
     rating = models.PositiveIntegerField(default=0)
+    rating_amount = models.PositiveBigIntegerField(default=0)
     in_wishlist = models.PositiveIntegerField(default=0)
     in_cart = models.PositiveIntegerField(default=0)
     image = models.ImageField(null=True, blank=True,
