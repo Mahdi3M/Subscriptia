@@ -17,10 +17,7 @@ def log_in(request):
         if user is not None:
             print("Logged in.")
             login(request, user)
-            if user.is_customer:
-                return render(request,"home.html")
-            elif user.is_employee:
-                return HttpResponse("Employee Dashboard")
+            return render(request,"home.html")
         else:
             print("Wrong input.")
             form_msg = "Username or Password is wrong."
