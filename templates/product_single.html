@@ -23,77 +23,45 @@
         <div class="container">
             <div class="row area_boxed">
                 <div class="col-lg-4">
-                    <div class="product_single_two_img slider-for">
-                        <div class="product_img_two_slider">
-                            <img src="{{product.image.url}}" alt="img" />
-                        </div>                        
-                    </div>
-                    <div class="slider-nav">
-                        {% comment %} <div class="nav_img">
-                            <img src="assets/img/product-image/product1.png" alt="img" />
-                        </div>
-                        <div class="nav_img">
-                            <img src="assets/img/product-image/product2.png" alt="img" />
-                        </div>
-                        <div class="nav_img">
-                            <img src="assets/img/product-image/product3.png" alt="img" />
-                        </div>
-                        <div class="nav_img">
-                            <img src="assets/img/product-image/product4.png" alt="img" />
-                        </div>
-                        <div class="nav_img">
-                            <img src="assets/img/product-image/product5.png" alt="img" />
-                        </div>
-                        <div class="nav_img">
-                            <img src="assets/img/product-image/product6.png" alt="img" />
-                        </div> {% endcomment %}
+                    <div class="product_single_one_img">
+                        <img src="{{product.image.url}}" style="height:600px; width:600px;" alt="img" />
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="product_details_right_one">
-                        <div class="modal_product_content_one">
-                            <h3>{{product.name}}</h3>
+                        <div class="modal_product_content_one" style="padding: 15px;">                             
+                            <div class="reviews_rating d-inline float-left"><i class="far fa-heart"><h6>{{product.in_wishlist}}</h6></i><i
+                                style="margin-left:30px;" class='fas fa-shopping-bag'><h6>{{product.in_cart}}</h6></i></div>
+                            <h3 style="margin-top:35px;">{{product.name}}</h3>         
+                            <h5 style="margin-top: 20px; margin-bottom: 20px;"><span style="font-weight: 500;">Categories:</span> {{product.category}}</h5>                   
                             <div class="reviews_rating">
-                                {% for c in all %}
-                                    {% if forloop.counter != rating %}
-                                        <i class="fas fa-star"></i>
-                                    {% endif %}
-                                {% endfor %}
+                                {% for c in stars %}
+                                    <i class="fas fa-star"></i>
+                                {% endfor %}                              
                             </div>
-                            <h4>$317.76 <del>$456.43</del> </h4>
-                            <p>Standard dummy text ever since the 1500s, standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen.
+                            {% if product.discount != 0 %}
+                                <h4>                                                                        
+                                    ${{new_price}} 
+                                    <del>${{product.price}}</del>
+                                </h4>
+                            {% else %}
+                            <h4>
+                                ${{product.price}}
+                            </h4>
+                            {% endif %}                            
+                            <p>{{product.description}}
                             </p>
                             <div class="customs_selects">
-                                <select name="product" class="customs_sel_box">
-                                    <option value="volvo">Size</option>
-                                    <option value="saab">XL</option>
-                                    <option value="mercedes">S</option>
-                                    <option value="audi">M</option>
-                                    <option value="audi">L</option>
-                                </select>
-                            </div>
-                            <div class="variable-single-item">
-                                <span>Color</span>
-                                <div class="product-variable-color">
-                                    <label for="modal-product-color-red">
-                                        <input name="modal-product-color" id="modal-product-color-red"
-                                            class="color-select" type="radio" checked="">
-                                        <span class="product-color-red"></span>
-                                    </label>
-                                    <label for="modal-product-color-green">
-                                        <input name="modal-product-color" id="modal-product-color-green"
-                                            class="color-select" type="radio">
-                                        <span class="product-color-green"></span>
-                                    </label>
-
-                                    <label for="modal-product-color-blue">
-                                        <input name="modal-product-color" id="modal-product-color-blue"
-                                            class="color-select" type="radio">
-                                        <span class="product-color-blue"></span>
-                                    </label>
-                                </div>
-                            </div>
+                                <a href=""></a>
+                                <select name="product" class="customs_sel_box" onchange="location = this.value;">
+                                    <option>{{product.plan_name}}</option>
+                                    {% for p in products %}
+                                        {% if p.plan_name != product.plan_name %}
+                                            <option value="{% url 'product_single' p.id %}">{{p.plan_name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>                                                             
+                            </div>     
                             <form action="#!" id="product_count_form_two">
                                 <div class="product_count_one">
                                     <div class="plus-minus-input">
@@ -103,7 +71,7 @@
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                        <input class="form-control" type="number" name="quantity" value="0">
+                                        <input class="form-control" type="number" name="quantity" value="1">
                                         <div class="input-group-button">
                                             <button type="button" class="button" data-quantity="plus"
                                                 data-field="quantity">
@@ -118,10 +86,6 @@
                                     <li>
                                         <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
                                                 class="far fa-heart"></i>Add To Wishlist</a>
-                                    </li>
-                                    <li>
-                                        <a href="compare.html" class="action compare" title="Compare"><i
-                                                class="fas fa-exchange-alt"></i>Add To Compare</a>
                                     </li>
                                 </ul>
                                 <a href="cart.html" class="theme-btn-one btn-black-overlay btn_sm">Add To Cart</a>
@@ -142,28 +106,7 @@
                         </ul>
                         <div class="tab-content">
                             <div id="description" class="tab-pane fade in show active">
-                                <div class="product_description">
-                                    <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Sed porttitor lectus nibh. Vivamus magna justo, lacinia eget consectetur sed,
-                                        convallis at tellus. Sed porttitor lectus nibh.
-                                        Donec sollicitudin molestie malesuada. Vivamus magna justo,
-                                        lacinia eget consectetur sed, convallis at tellus. Curabitur arcu erat, accumsan
-                                        id imperdiet et, porttitor at sem.</p>
-                                    <ul>
-                                        <li>Vivamus magna justo, lacinia eget consectetur sed</li>
-                                        <li>Curabitur aliquet quam id dui posuere blandit</li>
-                                        <li>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar </li>
-                                    </ul>
-                                    <p>Donec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum
-                                        porta.
-                                        Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                        Nulla porttitor accumsan tincidunt. Cras ultricies ligula sed magna dictum
-                                        porta. Curabitur arcu erat, accumsan id imperdiet et,
-                                        Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit.
-                                        porttitor at sem. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                                    </p>
+                                <div class="product_description">{{product.description}}
                                 </div>
                             </div>
                             <div id="additional" class="tab-pane fade">

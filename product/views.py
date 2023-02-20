@@ -11,9 +11,14 @@ def index(request):
 
 
 def product_single(request, product_id):
+    product = Product.objects.get(id=product_id)
+    products = list(Product.objects.filter(name=product.name))
+    quantity = 1 
     return render(request, 'product_single.html', {
-        'product': Product.objects.get(id=product_id),
-        'all': [1, 2, 3, 4, 5],
+        'product': product,
+        'products': products,
+        'stars': [None] * product.rating,
+        'new_price': product.price - (product.price * product.discount / 100),
     })
     # return HttpResponse(f'The product is {Product.objects.get(id=product_id).name}')
 
