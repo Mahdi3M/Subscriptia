@@ -34,10 +34,11 @@
                                 style="margin-left:30px;" class='fas fa-shopping-bag'><h6>{{product.in_cart}}</h6></i></div>
                             <h3 style="margin-top:35px;">{{product.name}}</h3>         
                             <h5 style="margin-top: 20px; margin-bottom: 20px;"><span style="font-weight: 500;">Categories:</span> {{product.category}}</h5>                   
-                            <div class="reviews_rating">
+                            <div class="reviews_rating d-inline float-left">
+                                <h6 style="margin-bottom: 10px;">Reviews: {{product.rating_amount}}</h6>
                                 {% for c in stars %}
                                     <i class="fas fa-star"></i>
-                                {% endfor %}                              
+                                {% endfor %}                                                             
                             </div>
                             {% if product.discount != 0 %}
                                 <h4>                                                                        
@@ -122,38 +123,51 @@
                             </div>
                             <div id="review" class="tab-pane fade">
                                 <div class="product_reviews">
-                                    <ul>
-                                        <li class="media d-flex">
-                                            <div class="media-img flex-shrink-0">
-                                                <img src="assets/img/user/user1.png" alt="img">
-                                            </div>
-                                            <div class="media-body flex-grow-1 ms-3">
-                                                <div class="media-header">
-                                                    <div class="media-name">
-                                                        <h4>Sara Anela</h4>
-                                                        <p>5 days ago</p>
-                                                    </div>
-                                                    <div class="post-share">
-                                                        <a href="#!" class="replay">Replay</a>
-                                                        <a href="#!" class="">Report</a>
+                                    <ul><li>
+                                        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                                        <form action="" method="post" enctype="multipart/form-data" class="add_review_form">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <h4 style="margin-bottom: 10px;">{{product.name}}: {{product.plan_name}} Subscription</h4>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="fotm-group">
+                                                        <label for="id_name">Name*</label>
+                                                        {% if user.is_authenticated %}
+                                                            <input type="text" id="id_name" class="form-control" name="reviewer"
+                                                            value="{{user.name}}">
+                                                        {% else %}
+                                                            <input type="text" id="id_name" class="form-control" name="reviewer" required>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
-                                                <div class="media-pragraph">
-                                                    <div class="product_review_strat">
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
+                                                <div class="col-lg-1">
+                                                    <div class="fotm-group">
+                                                        <label for="id_rating">Rating*</label>
+                                                        <input type="number" id="id_rating" class="form-control" name="review-rating" max=5 value=0 required>
                                                     </div>
-                                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                                        scelerisque Praesent sapien massa, convallis a pellentesque nec,
-                                                        egestas non nisi. Cras ultricies ligula sed magna dictum porta.
-                                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                                                        dui.
-                                                        Vivamus magna justo.</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="fotm-group">
+                                                        <label for="id_description">Review*</label>
+                                                        <textarea style="min-height: 200px;" id="id_description" class="form-control" name="review" required></textarea>
+                                                    </div>
+                                                </div>                          
+                                                <div class="col-lg-12">
+                                                    <div class="btn_right_table">
+                                                        <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Review</button>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </form>
+                                        {% comment %} {% else %}
+                                        <div class="col-lg-12">
+                                            <div class="btn_right_table">
+                                                <button class="theme-btn-one bg-black btn_sm"><a href="register.html">Create an Accont</a></button>
+                                            </div>
+                                        </div>
+                                        {% endif %} {% endcomment %}
                                         </li>
                                         <li class="media d-flex">
                                             <div class="media-img flex-shrink-0">
