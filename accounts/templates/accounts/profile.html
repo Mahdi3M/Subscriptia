@@ -130,8 +130,9 @@
                                             <div class="img_profiles">
                                                 <img src="{{ profile.image.url }}" alt="img">
                                             </div>
+                                            <br>
                                             <div class="mb-3">
-                                                <label for="formFile" class="form-label">Default file input example</label>
+                                                <label for="formFile" class="form-label">Edit Profile Picture</label>
                                                 <input type="file" name="image-file" class="form-control" id="formFile" accept=".jpg, .png">
                                             </div>
                                             <div class="default-form-box mb-20">
@@ -154,24 +155,13 @@
                                             </div>
                                             <div class="default-form-box mb-20">
                                                 <label>Birthdate</label>
-                                                <input type="date" name="birthday" value=""
+                                                <input type="date" name="birthday" value="{{ profile.dob }}"
                                                     class="form-control">
                                             </div>
                                             <span class="example">
                                                 (E.g.: 05/31/1970)
                                             </span>
                                             <br>
-                                            <label class="checkbox-default" for="offer">
-                                                <input type="checkbox" id="offer">
-                                                <span>Receive offers from our partners</span>
-                                            </label>
-                                            <br>
-                                            <label class="checkbox-default checkbox-default-more-text" for="newsletter">
-                                                <input type="checkbox" id="newsletter">
-                                                <span>Sign up for our newsletter<br><em>You may unsubscribe at any
-                                                        moment. For that purpose, please find our contact info in the
-                                                        legal notice.</em></span>
-                                            </label>
                                             <div class="save_button mt-3">
                                                     <button class="theme-btn-one btn-black-overlay btn_sm" type="submit"> Update </button> 
                                             </div>
