@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import *
 
 # Create your models here.
 
@@ -31,3 +32,14 @@ class Product(models.Model):
 class BannerImg(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     banner = models.ImageField(null=True, blank=True, upload_to="products/banner_images/")
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveIntegerField(default=0)
+
+class ReviewComment(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    comment = models.TextField(max_length=255, blank=True, null=True)
