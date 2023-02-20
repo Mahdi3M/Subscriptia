@@ -67,7 +67,7 @@ def profile(request):
         user.email = request.POST.get('email-name')
         pword = request.POST.get('user-password')
         if pword is not (None or ""):
-            user.password = pword
+            user.set_password(pword)
         user.save()
         if request.FILES['image-file']:
             image_file = request.FILES['image-file']
