@@ -62,18 +62,21 @@ def profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     if request.method == "POST":
+        if request.FILES.get('image-file'):
+            image_file = request.FILES.get('image-file')
+            profile.image = image_file
+        profile.dob = request.POST.get('birthday')
+        profile.save()
         user.first_name = request.POST.get('first-name')
         user.last_name = request.POST.get('last-name')
         user.email = request.POST.get('email-name')
         pword = request.POST.get('user-password')
         if pword is not (None or ""):
             user.set_password(pword)
+            user.save()
+            logout(request)
+            return redirect('login')
         user.save()
-        if request.FILES['image-file']:
-            image_file = request.FILES['image-file']
-            profile.image = image_file
-        profile.dob = request.POST.get('birthday')
-        profile.save()
     return render(request, "accounts/profile.html", {"user": user, "profile":profile})
 
 
