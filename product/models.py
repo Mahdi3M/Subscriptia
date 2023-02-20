@@ -11,11 +11,10 @@ CATEGORIES = ((0, 'None'), (1, 'News'), (2, 'Books'), (3, 'Software'), (4, 'Web'
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000, default="")
-    slug = models.SlugField(blank=False, null=False, unique=True, auto_created=True, max_length=30)
+    slug = models.SlugField(unique=True, max_length=30)
     rating = models.PositiveIntegerField(default=0)
     in_wishlist = models.PositiveIntegerField(default=0)
     in_cart = models.PositiveIntegerField(default=0)
-    # banner = models.ImageField(null=True, blank=True, upload_to='products/banner/')
     image = models.ImageField(null=True, blank=True,
                               upload_to='products/product_images/')
     plan_name = models.CharField(max_length=100, default='')
@@ -26,3 +25,8 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name}: {self.description}'
+
+
+class BannerImg(models.Model):
+    product_name = models.CharField(max_length=200, unique=True)
+    banner = models.ImageField(null=True, blank=True, upload_to="products/banner_images/")

@@ -1,3 +1,8 @@
 
 *.pyc
 *.pyc
+*.pyc
+*.pyc
+*.pyc
+product/__pycache__/admin.cpython-311.pyc
+*.pyc

@@ -11,8 +11,11 @@ def index(request):
 
 
 def product_single(request, product_id):
-    # return render(request, 'product_single.html', {})
-    return HttpResponse(f'The product is {Product.objects.get(id=product_id).name}')
+    return render(request, 'product_single.html', {
+        'product': Product.objects.get(id=product_id),
+        'all': [1, 2, 3, 4, 5],
+    })
+    # return HttpResponse(f'The product is {Product.objects.get(id=product_id).name}')
 
 
 def add_product(request):
@@ -24,8 +27,9 @@ def add_product(request):
         product.plan_name = request.POST['product_plan_name']
         product.price = request.POST['product_price']
         product.discount = request.POST['product_discount']
-        if request.FILES['product_image']:
-            image_file = request.FILES['product_image']
+        product.slug = f"{product.name}_{product.plan_name}".replace(" ", "")
+        if request.FILES.get('product_image'):
+            image_file = request.FILES.get('product_image')
             product.image = image_file
         product.save()
         return HttpResponsePermanentRedirect(reverse('product_single', args=(product.id,)))
