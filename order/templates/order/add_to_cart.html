@@ -10,11 +10,12 @@
                     <!-- Nav tabs -->
                     <div class="dashboard_tab_button" >
                         <ul role="tablist" class="nav flex-column dashboard-list" >
-                           <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders" class="active">Netflix
+                            {% for c in cart %}
+                           <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders" class="active">{{c.product.name}}
                             </a></li>
-                            <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Spotify</a></li>
-                             <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Udemy</a></li>
-
+<!--                            <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Spotify</a></li>-->
+<!--                             <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Udemy</a></li>-->
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
