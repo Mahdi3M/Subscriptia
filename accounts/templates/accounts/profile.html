@@ -46,7 +46,11 @@
                     <div class="tab-content dashboard_content">
                         <div class="tab-pane fade show active" id="dashboard">
                             <div class="myaccount-content">
-                                <h4 class="title">Dashboard </h4>
+                                {% if user.is_customer %}
+                                    <h4 class="title">Dashboard </h4>
+                                {% elif user.is_employee %}
+                                    <h4 class="title">Employee Dashboard </h4>
+                                {% endif %}
                                 <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent
                                         orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a
                                         href="#">Edit your password and account details.</a></p>

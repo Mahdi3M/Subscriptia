@@ -34,6 +34,14 @@ class BannerImg(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     banner = models.ImageField(null=True, blank=True, upload_to="products/banner_images/")
 
+class CartProduct(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    subtotal = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.id)
+
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

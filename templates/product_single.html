@@ -60,7 +60,6 @@
                                         {% if p.plan_name != product.plan_name %}
                                             <option value="{% url 'product_single' p.id %}">{{p.plan_name}}</option>
                                         {% endif %}
-                                    {% endfor %}
                                 </select>                                                             
                             </div>     
                             <form action="#!" id="product_count_form_two">
@@ -89,12 +88,14 @@
                                                 class="far fa-heart"></i>Add To Wishlist</a>
                                     </li>
                                 </ul>
-                                <a href="cart.html" class="theme-btn-one btn-black-overlay btn_sm">Add To Cart</a>
+                                {% if request.user.is_customer %}
+                                <a href="{% url 'cart' p.id %}" class="theme-btn-one btn-black-overlay btn_sm">Add To Cart</a>{% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product_details_tabs">
@@ -209,7 +210,7 @@
         </div>
     </section>
 
-
+{% comment %} 
     <!-- Related Product -->
     <section id="related_product" class="pb-100">
         <div class="container">
@@ -426,5 +427,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
 {% endblock content %}
