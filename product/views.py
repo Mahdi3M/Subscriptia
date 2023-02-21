@@ -68,3 +68,31 @@ def add_product(request):
             'product': product,
             'categories' : categories,
         })
+
+def add_to_cart(request,id):
+    product = Product.objects.get(id=id)
+    price = product.price
+    user = request.user
+    cp = CartProduct(user=user,product=product,subtotal=price)
+    try:
+        cp.save()
+    except Exception as e:
+        cart = CartProduct.objects.filter(user=user)
+        # for c in cart:
+        #     print(c.product.name)
+        context = {
+            'cart': cart,
+        }
+        print(e)
+        return render(request, 'add_to_cart.html', context)
+
+    cart = CartProduct.objects.filter(user=user)
+    # for c in cart:
+    #     print(c.product.name)
+    context = {
+        'cart': cart,
+    }
+    return render(request, 'add_to_cart.html',context)
+
+def invoice(request):
+    return render(request,'invoice.html')
