@@ -2,11 +2,10 @@ from django.db import models
 
 # Create your models here.
 
-CATEGORIES = (('None', 'None'), ('News', 'News'), ('Books', 'Books'), ('Streaming', 'Streaming'),)
-# ('software', 'Software'), ('web', 'Web'), ('design', 'Design'), ('presentation', 'Presentation'),
-#               ('educational', 'Educational'), ('streaming', 'Streaming'), ('video', 'Video'), ('writing',
-#                                                                    'Writing'), ('travel', 'Travel'), ('blog', 'Blog'),
-#               ('e-commerce', 'E-commerce'), ('photos', 'Photo Editing'), ('videos', 'Video Editing'), ('food', 'Food & Beverages')
+CATEGORIES = (('None', 'None'), ('News', 'News'), ('Books', 'Books'), ('Streaming', 'Streaming'),
+ ('Software', 'Software'), ('Web', 'Web'), ('Design', 'Design'), ('Presentation', 'Presentation'),    ('Educational', 'Educational'), ('Streaming', 'Streaming'), ('Video', 'Video'), ('Writing',
+                                                                   'Writing'), ('Travel', 'Travel'), ('Blog', 'Blog'),
+ ('E-commerce', 'E-commerce'), ('Photos', 'Photo Editing'), ('Videos', 'Video Editing'), ('Music', 'Music'))
 
 
 class Product(models.Model):

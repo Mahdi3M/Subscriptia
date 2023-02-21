@@ -4,11 +4,16 @@ from django.urls import reverse
 from .models import *
 
 # Create your views here.
-
-
-def index(request):
-    return render(request, 'home.html')
-
+def cardview(request):
+    prices = []
+    products = Product.objects.all()
+    for i in  products:
+        new_price = i.price - (i.price * i.discount / 100)
+        prices.append([i.id, new_price])
+    return render(request, 'home.html', {
+    'products': products,
+    'prices': prices,   
+     })
 
 def product_single(request, product_id):
     product = Product.objects.get(id=product_id)
