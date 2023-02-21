@@ -14,11 +14,33 @@ def product_single(request, product_id):
     product = Product.objects.get(id=product_id)
     products = list(Product.objects.filter(name=product.name))
     quantity = 1 
+    if request.method == "POST":
+        rating = request.POST.get('review-rating')
+        comment = request.POST.get('review')
+        r = Review.objects.get(user=request.user, product=product)
+        r.rating = rating
+        r.save()
+        if comment is not (None or ""):
+            rc = ReviewComment(review=r, comment=comment)
+            rc.save()
+
+    try:
+        review = Review.objects.get(user=request.user, product=product)
+    except Exception:
+        r = Review(user=request.user, product=product)
+        r.save()
+        review = r
+
+    reviewAll = Review.objects.all().filter(product=product)
+    reviewComment = ReviewComment.objects.all().filter(review__in=reviewAll)
+
     return render(request, 'product_single.html', {
         'product': product,
         'products': products,
         'stars': [None] * product.rating,
         'new_price': product.price - (product.price * product.discount / 100),
+        'review': review,
+        'review_comments': reviewComment,
     })
     # return HttpResponse(f'The product is {Product.objects.get(id=product_id).name}')
 

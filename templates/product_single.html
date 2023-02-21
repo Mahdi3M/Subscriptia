@@ -123,116 +123,82 @@
                             </div>
                             <div id="review" class="tab-pane fade">
                                 <div class="product_reviews">
-                                    <ul><li>
-                                        {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                                        <form action="" method="post" enctype="multipart/form-data" class="add_review_form">
-                                            {% csrf_token %}
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <h4 style="margin-bottom: 10px;">{{product.name}}: {{product.plan_name}} Subscription</h4>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="fotm-group">
-                                                        <label for="id_name">Name*</label>
-                                                        {% if user.is_authenticated %}
-                                                            <input type="text" id="id_name" class="form-control" name="reviewer"
-                                                            value="{{user.name}}">
-                                                        {% else %}
-                                                            <input type="text" id="id_name" class="form-control" name="reviewer" required>
-                                                        {% endif %}
+                                    <ul>
+                                        <li>
+                                            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                                            <form action="" method="post" enctype="multipart/form-data" class="add_review_form">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <h4 style="margin-bottom: 10px;">{{product.name}}: {{product.plan_name}} Subscription</h4>
+                                                    {% comment %} </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="fotm-group">
+                                                            <label for="id_name">Name*</label>
+                                                            {% if user.is_authenticated %}
+                                                                <input type="text" id="id_name" class="form-control" name="reviewer"
+                                                                value="{{user.name}}">
+                                                            {% else %}
+                                                                <input type="text" id="id_name" class="form-control" name="reviewer" required>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div> {% endcomment %}
+                                                    <div class="col-lg-1">
+                                                        <div class="fotm-group">
+                                                            <label for="id_rating">Rating</label>
+                                                            <input type="number" id="id_rating" class="form-control" name="review-rating" max=5 min=1 value={{review.rating}}>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="fotm-group">
+                                                            <label for="id_description">Comment</label>
+                                                            <textarea style="min-height: 200px;" id="id_description" class="form-control" name="review"></textarea>
+                                                        </div>
+                                                    </div>                          
+                                                    <div class="col-lg-12">
+                                                        <div class="btn_right_table">
+                                                            <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Review</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-1">
-                                                    <div class="fotm-group">
-                                                        <label for="id_rating">Rating*</label>
-                                                        <input type="number" id="id_rating" class="form-control" name="review-rating" max=5 value=0 required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="fotm-group">
-                                                        <label for="id_description">Review*</label>
-                                                        <textarea style="min-height: 200px;" id="id_description" class="form-control" name="review" required></textarea>
-                                                    </div>
-                                                </div>                          
-                                                <div class="col-lg-12">
-                                                    <div class="btn_right_table">
-                                                        <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Review</button>
-                                                    </div>
+                                            </form>
+                                            {% comment %} {% else %}
+                                            <div class="col-lg-12">
+                                                <div class="btn_right_table">
+                                                    <button class="theme-btn-one bg-black btn_sm"><a href="register.html">Create an Accont</a></button>
                                                 </div>
                                             </div>
-                                        </form>
-                                        {% comment %} {% else %}
-                                        <div class="col-lg-12">
-                                            <div class="btn_right_table">
-                                                <button class="theme-btn-one bg-black btn_sm"><a href="register.html">Create an Accont</a></button>
-                                            </div>
-                                        </div>
-                                        {% endif %} {% endcomment %}
+                                            {% endif %} {% endcomment %}
                                         </li>
-                                        <li class="media d-flex">
-                                            <div class="media-img flex-shrink-0">
-                                                <img src="assets/img/user/user2.png" alt="img">
-                                            </div>
-                                            <div class="media-body flex-grow-1 ms-3">
-                                                <div class="media-header">
-                                                    <div class="media-name">
-                                                        <h4>Sara Anela</h4>
-                                                        <p>5 days ago</p>
+                                        {% for comment in review_comments %}
+                                            <li class="media d-flex">
+                                                <div class="media-img flex-shrink-0">
+                                                    <img src="{{ comment.review.user.profile.image.url }}" alt="img">
+                                                </div>
+                                                <div class="media-body flex-grow-1 ms-3">
+                                                    <div class="media-header">
+                                                        <div class="media-name">
+                                                            <h4>{{ comment.review.user.username }}</h4>
+                                                            <p>{{ comment.created_at }}</p>
+                                                        </div>
+                                                        {% comment %} <div class="post-share">
+                                                            <a href="#!" class="replay">Replay</a>
+                                                            <a href="#!" class="">Report</a>
+                                                        </div> {% endcomment %}
                                                     </div>
-                                                    <div class="post-share">
-                                                        <a href="#!" class="replay">Replay</a>
-                                                        <a href="#!" class="">Report</a>
+                                                    <div class="media-pragraph">
+                                                        <div class="product_review_strat">
+                                                            {% if comment.review.rating > 0 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 1 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 2 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 3 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 4 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                        </div>
+                                                        <p>{{ comment.comment }}</p>
                                                     </div>
                                                 </div>
-                                                <div class="media-pragraph">
-                                                    <div class="product_review_strat">
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                    </div>
-                                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                                        scelerisque Praesent sapien massa, convallis a pellentesque nec,
-                                                        egestas non nisi. Cras ultricies ligula sed magna dictum porta.
-                                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                                                        dui.
-                                                        Vivamus magna justo.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="media d-flex">
-                                            <div class="media-img flex-shrink-0">
-                                                <img src="assets/img/user/user3.png" alt="img">
-                                            </div>
-                                            <div class="media-body flex-grow-1 ms-3">
-                                                <div class="media-header">
-                                                    <div class="media-name">
-                                                        <h4>Sara Anela</h4>
-                                                        <p>5 days ago</p>
-                                                    </div>
-                                                    <div class="post-share">
-                                                        <a href="#!" class="replay">Replay</a>
-                                                        <a href="#!" class="">Report</a>
-                                                    </div>
-                                                </div>
-                                                <div class="media-pragraph">
-                                                    <div class="product_review_strat">
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                        <span><a href="#!"><i class="fas fa-star"></i></a></span>
-                                                    </div>
-                                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                                        scelerisque Praesent sapien massa, convallis a pellentesque nec,
-                                                        egestas non nisi. Cras ultricies ligula sed magna dictum porta.
-                                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                                                        dui.
-                                                        Vivamus magna justo.</p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
