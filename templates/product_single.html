@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Banner Area -->
+    <section id="common_banner_one">
+        <div class="container ">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="common_banner_text">
+                        <h2>Shop</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><i class="fas fa-slash"></i></li>
+                            <li class="active">Product Single</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Single Area -->
+    <section id="product_single_two" class="ptb-100">
+        <div class="container">
+            <div class="row area_boxed">
+                <div class="col-lg-4">
+                    <div class="product_single_one_img">
+                        <img src="{{product.image.url}}" style="height:600px; width:600px;" alt="img" />
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="product_details_right_one">
+                        <div class="modal_product_content_one" style="padding: 15px;">                             
+                            <div class="reviews_rating d-inline float-left"><i class="far fa-heart"><h6>{{product.in_wishlist}}</h6></i><i
+                                style="margin-left:30px;" class='fas fa-shopping-bag'><h6>{{product.in_cart}}</h6></i></div>
+                            <h3 style="margin-top:35px;">{{product.name}}</h3>         
+                            <h5 style="margin-top: 20px; margin-bottom: 20px;"><span style="font-weight: 500;">Categories:</span> {{product.category}}</h5>                   
+                            <div class="reviews_rating d-inline float-left">
+                                <h6 style="margin-bottom: 10px;">Reviews: {{product.rating_amount}}</h6>
+                                {% for c in stars %}
+                                    <i class="fas fa-star"></i>
+                                {% endfor %}                                                             
+                            </div>
+                            {% if product.discount != 0 %}
+                                <h4>                                                                        
+                                    ${{new_price}} 
+                                    <del>${{product.price}}</del>
+                                </h4>
+                            {% else %}
+                            <h4>
+                                ${{product.price}}
+                            </h4>
+                            {% endif %}                            
+                            <p>{{product.description}}
+                            </p>
+                            <div class="customs_selects">
+                                <a href=""></a>
+                                <select name="product" class="customs_sel_box" onchange="location = this.value;">
+                                    <option>{{product.plan_name}}</option>
+                                    {% for p in products %}
+                                        {% if p.plan_name != product.plan_name %}
+                                            <option value="{% url 'product_single' p.id %}">{{p.plan_name}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>                                                             
+                            </div>     
+                            <form action="#!" id="product_count_form_two">
+                                <div class="product_count_one">
+                                    <div class="plus-minus-input">
+                                        <div class="input-group-button">
+                                            <button type="button" class="button" data-quantity="minus"
+                                                data-field="quantity">
+                                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <input class="form-control" type="number" name="quantity" value="1">
+                                        <div class="input-group-button">
+                                            <button type="button" class="button" data-quantity="plus"
+                                                data-field="quantity">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="links_Product_areas">
+                                <ul>
+                                    <li>
+                                        <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                class="far fa-heart"></i>Add To Wishlist</a>
+                                    </li>
+                                </ul>
+                                <a href="cart.html" class="theme-btn-one btn-black-overlay btn_sm">Add To Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product_details_tabs">
+                        <ul class="nav nav-tabs">
+                            <li><a data-bs-toggle="tab" data-bs-target="#description" href="#!"
+                                    class="active">Description</a></li>
+                            <li><a data-bs-toggle="tab" data-bs-target="#additional" href="#!">Additional
+                                    Information</a></li>
+                            <li><a data-bs-toggle="tab" data-bs-target="#review" href="#!">Review</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="description" class="tab-pane fade in show active">
+                                <div class="product_description">{{product.description}}
+                                </div>
+                            </div>
+                            <div id="additional" class="tab-pane fade">
+                                <div class="product_additional">
+                                    <ul>
+                                        <li>Weight: <span>400 g</span></li>
+                                        <li>Dimensions: <span>10 x 10 x 15 cm</span></li>
+                                        <li>Materials: <span> 60% cotton, 40% polyester</span></li>
+                                        <li>Other Info: <span> American heirloom jean shorts pug seitan
+                                                letterpress</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="review" class="tab-pane fade">
+                                <div class="product_reviews">
+                                    <ul>
+                                        <li>
+                                            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                                            <form action="" method="post" enctype="multipart/form-data" class="add_review_form">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <h4 style="margin-bottom: 10px;">{{product.name}}: {{product.plan_name}} Subscription</h4>
+                                                    {% comment %} </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="fotm-group">
+                                                            <label for="id_name">Name*</label>
+                                                            {% if user.is_authenticated %}
+                                                                <input type="text" id="id_name" class="form-control" name="reviewer"
+                                                                value="{{user.name}}">
+                                                            {% else %}
+                                                                <input type="text" id="id_name" class="form-control" name="reviewer" required>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div> {% endcomment %}
+                                                    <div class="col-lg-1">
+                                                        <div class="fotm-group">
+                                                            <label for="id_rating">Rating</label>
+                                                            <input type="number" id="id_rating" class="form-control" name="review-rating" max=5 min=1 value={{review.rating}}>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="fotm-group">
+                                                            <label for="id_description">Comment</label>
+                                                            <textarea style="min-height: 200px;" id="id_description" class="form-control" name="review"></textarea>
+                                                        </div>
+                                                    </div>                          
+                                                    <div class="col-lg-12">
+                                                        <div class="btn_right_table">
+                                                            <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Review</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            {% comment %} {% else %}
+                                            <div class="col-lg-12">
+                                                <div class="btn_right_table">
+                                                    <button class="theme-btn-one bg-black btn_sm"><a href="register.html">Create an Accont</a></button>
+                                                </div>
+                                            </div>
+                                            {% endif %} {% endcomment %}
+                                        </li>
+                                        {% for comment in review_comments %}
+                                            <li class="media d-flex">
+                                                <div class="media-img flex-shrink-0">
+                                                    <img src="{{ comment.review.user.profile.image.url }}" alt="img">
+                                                </div>
+                                                <div class="media-body flex-grow-1 ms-3">
+                                                    <div class="media-header">
+                                                        <div class="media-name">
+                                                            <h4>{{ comment.review.user.username }}</h4>
+                                                            <p>{{ comment.created_at }}</p>
+                                                        </div>
+                                                        {% comment %} <div class="post-share">
+                                                            <a href="#!" class="replay">Replay</a>
+                                                            <a href="#!" class="">Report</a>
+                                                        </div> {% endcomment %}
+                                                    </div>
+                                                    <div class="media-pragraph">
+                                                        <div class="product_review_strat">
+                                                            {% if comment.review.rating > 0 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 1 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 2 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 3 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            {% if comment.review.rating > 4 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                        </div>
+                                                        <p>{{ comment.comment }}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Related Product -->
+    <section id="related_product" class="pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center_heading">
+                        <h2>You Might Also Like</h2>
+                        <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a href="product-single.html" class="image">
+                                <img src="assets/img/product-image/product1.png" alt="Product" />
+                                <img class="hover-image" src="assets/img/product-image/product2.png" alt="Product" />
+                            </a>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
+                                        class="fas fa-expand"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i
+                                        class="fas fa-exchange-alt"></i></a>
+                            </div>
+                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                data-bs-target="#shoppingCartModal">
+                                Add To Cart
+                            </button>
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="product-single.html">Black T-Shirt For Woman</a></h5>
+                            <span class="price">
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a href="product-single.html" class="image">
+                                <img src="assets/img/product-image/product3.png" alt="Product" />
+                                <img class="hover-image" src="assets/img/product-image/product4.png" alt="Product" />
+                            </a>
+                            <span class="badges">
+                                <span class="new">New</span>
+                            </span>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
+                                        class="fas fa-expand"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i
+                                        class="fas fa-exchange-alt"></i></a>
+                            </div>
+                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                data-bs-target="#shoppingCartModal">
+                                Add To Cart
+                            </button>
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="product-single.html">T-Shirt Form Girls</a></h5>
+                            <span class="price">
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a href="product-single.html" class="image">
+                                <img src="assets/img/product-image/product5.png" alt="Product" />
+                                <img class="hover-image" src="assets/img/product-image/product6.png" alt="Product" />
+                            </a>
+                            <span class="badges">
+                                <span class="hot">Hot</span>
+                            </span>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
+                                        class="fas fa-expand"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i
+                                        class="fas fa-exchange-alt"></i></a>
+                            </div>
+                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                data-bs-target="#shoppingCartModal">
+                                Add To Cart
+                            </button>
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="product-single.html">White Black Line Dress</a></h5>
+                            <span class="price">
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a href="product-single.html" class="image">
+                                <img src="assets/img/product-image/product7.png" alt="Product" />
+                                <img class="hover-image" src="assets/img/product-image/product8.png" alt="Product" />
+                            </a>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
+                                        class="fas fa-expand"></i></a>
+                                <a href="compare.html" class="action compare" title="Compare"><i
+                                        class="fas fa-exchange-alt"></i></a>
+                            </div>
+                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                data-bs-target="#shoppingCartModal">
+                                Add To Cart
+                            </button>
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="product-single.html">Blue Dress For Woman</a></h5>
+                            <span class="price">
+                                <span class="new">$38.50</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Arae -->
+    <section id="instagram_area_one">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center_heading">
+                        <h2>Follow Us Instagram</h2>
+                        <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="instagram_post_slider owl-carousel owl-theme">
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post2.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post3.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post4.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post5.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post6.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post7.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post8.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post9.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post2.png" alt="img">
+                            </a>
+                        </div>
+                        <div class="instgram_post">
+                            <a href="#!">
+                                <i class="fab fa-instagram"></i>
+                                <img src="assets/img/instagram/post1.png" alt="img">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

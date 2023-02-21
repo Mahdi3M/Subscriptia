@@ -154,6 +154,11 @@
                             <li class="nav-item"><a href="#" class="nav-link">Contact </a>
                                 
                             </li>
+                            {% if user.is_authenticated %}
+                                {% if user.is_employee %}
+                                    <li class="nav-item"><a href="add-product.html" class="nav-link">Staff</a></li>
+                                {% endif %}
+                            {% endif %}
                         </ul>
                         <div class="others-option">
                             <div class="option-item">
