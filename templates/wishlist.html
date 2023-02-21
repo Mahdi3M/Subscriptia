@@ -1,0 +1,90 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+   <!-- Checkout-Area -->
+    <section id="Wishlist_area" class="ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="table_page table-responsive">
+                            <table>
+                                <!-- Start Wishlist Table Head -->
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">Remove</th>
+                                        <th class="product_thumb">Image</th>
+                                        <th class="product_name">Product</th>
+                                        <th class="product_name">Plan</th>
+                                        <th class="product-price">Price</th>
+<!--                                        <th class="product_stock">Stock Status</th>-->
+                                        <th class="product_addcart">Add To Cart</th>
+                                    </tr>
+                                </thead> <!-- End Cart Table Head -->
+                                <tbody>
+
+                                    <!-- Start Wishlist Single Item-->
+                                    {% for w in wish_list %}
+                                    <tr>
+                                        <td class="product_remove"><a href="{% url 'r_wishlist' w.product.id  %}"><i class="far fa-trash-alt"></i></a></td>
+                                        <td class="product_thumb">
+                                            <a href="product-single.html">
+                                                <img src="{{w.product.image.url}}" alt="img">
+                                            </a>
+                                        </td>
+                                        <td class="product_name"><a href="product-single.html">{{w.product.name}} </a>
+                                        </td>
+                                        <td class="product_name"><a href="product-single.html">{{w.product.plan_name}} </a>
+                                        </td>
+                                        <td class="product-price">&#2547;{{w.product.price}} </td>
+<!--                                        <td class="product_stock">-->
+<!--                                            <h6>In Stock</h6>-->
+<!--                                        </td>-->
+                                        <td class="product_addcart">
+                                            <a href="{% url 'cart' w.product.id %}" class="theme-btn-one btn-black-overlay btn_sm">Add To
+                                                Cart</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+<!--                                    <tr>-->
+<!--                                        <td class="product_remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>-->
+<!--                                        <td class="product_thumb"><a href="product-single.html"><img-->
+<!--                                                    src="assets/img/product-image/product4.png" alt=""></a></td>-->
+<!--                                        <td class="product_name"><a href="product-single.html">Handbags-->
+<!--                                                justo</a></td>-->
+<!--                                        <td class="product-price">$90.00</td>-->
+<!--&lt;!&ndash;                                        <td class="product_stock">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <h6>In Stock</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+<!--                                        <td class="product_addcart">-->
+<!--                                            <a href="cart.html" class="theme-btn-one btn-black-overlay btn_sm">Add To-->
+<!--                                                Cart</a>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td class="product_remove"><a href="#"><i class="far fa-trash-alt"></i></a></td>-->
+<!--                                        <td class="product_thumb"><a href="product-single.html"><img-->
+<!--                                                    src="assets/img/product-image/product3.png" alt=""></a></td>-->
+<!--                                        <td class="product_name"><a href="product-single.html">Handbag-->
+<!--                                                elit</a></td>-->
+<!--                                        <td class="product-price">$80.00</td>-->
+<!--&lt;!&ndash;                                        <td class="product_stock">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <h6>In Stock</h6>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+<!--                                        <td class="product_addcart">-->
+<!--                                            <a href="cart.html" class="theme-btn-one btn-black-overlay btn_sm">Add To-->
+<!--                                                Cart</a>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
