@@ -11,7 +11,7 @@
                     <div class="dashboard_tab_button" >
                         <ul role="tablist" class="nav flex-column dashboard-list" >
                             {% for c in cart %}
-                           <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders" >{{c.product.name}}
+                           <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders" >{{c.product.name}} {{ c.product.plan_name }}
                             </a></li>
 <!--                            <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Spotify</a></li>-->
 <!--                             <li> <a href="#!" data-bs-toggle="tab" data-bs-target="#orders">Udemy</a></li>-->

@@ -34,6 +34,13 @@ def product_single(request, product_id):
     reviewAll = Review.objects.all().filter(product=product)
     reviewComment = ReviewComment.objects.all().filter(review__in=reviewAll)
 
+    ratingTotal = 0
+    for r in reviewAll:
+        if r.rating:
+            ratingTotal = ratingTotal + r.rating
+
+    print(ratingTotal, len(reviewAll))
+
     return render(request, 'product_single.html', {
         'product': product,
         'products': products,
