@@ -2289,6 +2289,10 @@ label {
     background-color: #007a58;
 }
 
+.product_wrappers_one .thumb .badges span.best {
+    background-color: #d83927;
+}
+
 .product_wrappers_one .thumb .badges span.hot {
     background-color: var(--main-theme-color);
 }
