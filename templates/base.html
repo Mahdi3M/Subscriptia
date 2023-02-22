@@ -30,14 +30,14 @@
         <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/img/favicon/apple-icon-57x57.png' %}" />
         <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/img/favicon/apple-icon-60x60.png' %}" />
         <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/img/favicon/apple-icon-72x72.png' %}" />
-        <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicon/apple-icon-76x76.png' %}" />
-        <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/img/favicon/apple-icon-114x114.png' %}" />
-        <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/img/favicon/apple-icon-120x120.png' %}" />
-        <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/img/favicon/apple-icon-144x144.png' %}" />
-        <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/img/favicon/apple-icon-152x152.png' %}" />
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicon/apple-icon-180x180.png' %}" />
-        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/img/favicon/android-icon-192x192.png' %}" />
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon/favicon-32x32.png' %}" />
+        {% comment %} <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/favicon/apple-icon-76x76.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/img/favicon/apple-icon-114x114.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/img/favicon/apple-icon-120x120.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/img/favicon/apple-icon-144x144.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/img/favicon/apple-icon-152x152.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicon/apple-icon-180x180.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/img/favicon/android-icon-192x192.png' %}" /> {% endcomment %}
+        {% comment %} <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicon/favicon-32x32.png' %}" /> {% endcomment %}
         <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicon/favicon-96x96.png' %}" />
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/img/favicon/favicon-16x16.png' %}" />
         <link rel="manifest" href="{% static 'assets/img/favicon/manifest.json' %}" />
@@ -110,7 +110,13 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="my-account.html">My Account</a></li>
+                        {% if user.is_authenticated %} 
+                            <li><a href="{% url 'profile' %}">{{request.user.username}}</a></li>
+                        {% else %}
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </div>
@@ -146,8 +152,13 @@
                             </li>
                             <li class="nav-item"><a href="about-us.html" class="nav-link">About Us</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Contact </a>
-
+                                
                             </li>
+                            {% if user.is_authenticated %}
+                                {% if user.is_employee %}
+                                    <li class="nav-item"><a href="add-product.html" class="nav-link">Staff</a></li>
+                                {% endif %}
+                            {% endif %}
                         </ul>
                         <div class="others-option">
                             <div class="option-item">
@@ -194,7 +205,6 @@
     </div>
     <main>
         {% block content %}
-
         {% endblock content %}
     </main>
     <!-- footer Area -->
@@ -274,7 +284,7 @@
     </footer>
 
     <!-- CopyRight Area -->
-
+    
     <section id="copyright_one">
         <div class="container">
             <div class="row">
@@ -301,8 +311,8 @@
         <a href="javascript:void(0)" class="btn theme-btn-one bg-black btn_sm">accept</a>
         <a href="javascript:void(0)" class="btn theme-btn-one bg-black btn_sm">decline</a>
     </div>
-    <!-- cookie bar end -->
-
+    <!-- cookie bar end --> 
+    
 
     <!-- Jquery -->
     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>

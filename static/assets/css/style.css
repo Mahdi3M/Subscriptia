@@ -287,7 +287,7 @@ ul li {
 }
 
 #common_banner_one {
-    background-image: url('../img/common/common_bg.png');
+    background-color: red;
     padding: 90px 0;
     background-repeat: no-repeat;
 }
@@ -704,7 +704,7 @@ Top Header Area CSS
 
 .drodo-nav .navbar .navbar-nav .nav-item a {
     color: #000;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
     padding-left: 0;
     padding-right: 0;
@@ -714,7 +714,7 @@ Top Header Area CSS
     margin-right: 20px;
 }
 
-.drodo-nav .navbar .navbar-nav .nav-item a i {
+/* .drodo-nav .navbar .navbar-nav .nav-item a i {
     font-size: 12px;
     position: relative;
     top: 0px;
@@ -722,12 +722,14 @@ Top Header Area CSS
     margin-left: -3px;
     margin-right: -3px;
     left: 5px;
-}
+} */
 
 .drodo-nav .navbar .navbar-nav .nav-item a:hover,
 .drodo-nav .navbar .navbar-nav .nav-item a:focus,
 .drodo-nav .navbar .navbar-nav .nav-item a.active {
-    color: var(--mainColor);
+    /* color: var(--mainColor); */
+    color: #f17d3ad4 !important;
+    font-weight: 900;
 }
 
 .drodo-nav .navbar .navbar-nav .nav-item:last-child a {
@@ -2017,8 +2019,8 @@ Top Header Area CSS
 ---------------------------*/
 
 #banner_one {
-    background-image: url('../img/common/banner_3.jpg');
-    padding: 200px 0;
+    background-image: url('../img/common/banner3copy.jpg');
+    padding: 170px 0;
     display: flex;
     align-items: center;
     background-size: cover;
@@ -2169,7 +2171,7 @@ Top Header Area CSS
 ---------------------------*/
 
 #offer_timer_one {
-    background-image: url('../img/offer/t-shirt.png');
+    background-image: url('../img/offer/offers.jpg');
     background-size: cover;
     background-position: center;
     padding: 145px 0;
@@ -2553,6 +2555,8 @@ label {
 ---------------------------*/
 
 #footer_one {
+    position: sticky;
+    top: 100vh;
     padding: 70px 0;
     background-color: #f6f6f6;
 }
@@ -2621,6 +2625,8 @@ label {
 /* --CopyRight Area-- */
 
 #copyright_one {
+    position: sticky;
+    top: 100vh;
     padding: 15px 0;
     border-top: 1px solid #ededed;
     background: #000

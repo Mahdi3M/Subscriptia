@@ -1,0 +1,123 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="theme-invoice-4 ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 m-auto">
+                    <div class="invoice-wrapper">
+                        <div class="invoice-header">
+                            <img src="{% static 'assets/img/invoice/bg3.jpg' %}" class="background-invoice">
+                            <img src="{% static 'assets/img/logo.png' %}" class="img-fluid" alt="logo">
+                        </div>
+                        <div class="invoice-body">
+                            <div class="top-sec">
+                                <div class="row">
+                                    <div class="col-xxl-8 col-md-7">
+                                        <div class="address-detail">
+                                            <div class="mt-2">
+                                                <h4 class="mb-2">
+                                                    2664 Tail Ends Road,
+                                                </h4>
+                                                <h4 class="mb-2"> ORADELL, New Jersey</h4>
+                                                <h4 class="mb-0">NJ, 07649</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-4 col-md-5">
+                                        <ul class="date-detail">
+                                            <li><span>issue date :</span>
+                                                <h4> 20 march, 2020</h4>
+                                            </li>
+                                            <li><span>invoice no :</span>
+                                                <h4> 908452</h4>
+                                            </li>
+                                            <li><span>email :</span>
+                                                <h4> user@gmail.com</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="title-sec">
+                                <h2 class="title">invoice</h2>
+                                <!-- <div class="row">
+                                    <div class="col-6">
+                                        <a href="#" class="theme-btn-one btn-black-overlay btn_sm"
+                                            onclick="window.print();">export as PDF</a>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a href="#" class="theme-btn-one btn-black-overlay btn_sm"
+                                            onclick="window.print();">print</a>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="table-sec">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-striped mb-0">
+                                        <thead>
+                                            <tr>
+<!--                                                <th scope="col">#</th>-->
+                                                <th scope="col" style="padding-left: 12%;">description</th>
+                                                <th scope="col" style="padding-left: 15%;" >Plan</th>
+                                                <th scope="col" style="padding-left: 14%;">price</th>
+                                                <!-- <th scope="col">hrs.</th>
+                                                <th scope="col">total</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for o in order %}
+                                            <tr>
+<!--                                                <th scope="row">1</th>-->
+                                                <td>{{o.product.name}}</td>
+                                                <td>o{{.product.plan_name}}</td>
+                                                <td>&#2547; {{o.product.price}}</td>
+
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <div class="table-footer">
+                                        <span>Grand Total:</span>
+                                        <span>&#2547; {{subtotal}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="invoice-footer">
+                            <img src="assets/img/invoice/shape.png" class="img-fluid design-shape" alt="">
+                            <ul>
+                                <li>
+                                    <i class="fa fa-map" aria-hidden="true"></i>
+                                    <div>
+                                        <h4>Andshop demo store</h4>
+                                        <h4>USA, 362351</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <div>
+                                        <h4>+1-202-555-0144</h4>
+                                        <h4>+1-202-555-0117</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <div>
+                                        <h4>support@Andshop.com</h4>
+                                        <h4>demo@Andshop.com</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
