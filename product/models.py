@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import *
-from django.core.validators import MinValueValidator, MaxValueValidator
+from datetime import timezone
 
 # Create your models here.
 
@@ -24,10 +24,11 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True,
                               upload_to='products/product_images/')
     plan_name = models.CharField(max_length=100, default='')
-    price = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
-    discount = models.DecimalField(max_digits=4, decimal_places=2, default=-0.00)
+    price = models.FloatField(default=0.00)
+    discount = models.FloatField(default=-0.00)
     category = models.CharField(
         max_length=200, choices=CATEGORIES, default=None)
+    time_added = models.DateTimeField(auto_now=True)
 
     # def __str__(self):
     #     return f'{self.name}: {self.description}'

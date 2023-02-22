@@ -2,18 +2,28 @@ from django.shortcuts import render
 from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.urls import reverse
 from .models import *
-from django.db.models import Q
 
 # Create your views here.
 def cardview(request):
     prices = []
     products = Product.objects.all()
+    best = Product.objects.order_by('-in_cart')[:4]
+    sale = Product.objects.order_by('-discount')[:4]
+    featured = Product.objects.filter(category="Streaming")[:4]
+    trending = Product.objects.order_by('-in_wishlist')[:4]
+    new = Product.objects.all().order_by('time_added')[:4]
+    # sale = Product.
     for i in  products:
-        new_price = i.price - (i.price * i.discount / 100)
+        new_price = round(i.price - (i.price * i.discount / 100), 2)
         prices.append([i.id, new_price])
     return render(request, 'home.html', {
     'products': products,
-    'prices': prices,   
+    'prices': prices,  
+    'best_products': best, 
+    'sale_products': sale,
+    'featured_products': featured,
+    'trending_products': trending,
+    'new_products': new,
      })
 
 def about_us(request):
@@ -22,7 +32,6 @@ def about_us(request):
 def product_single(request, product_id):
     product = Product.objects.get(id=product_id)
     products = list(Product.objects.filter(name=product.name))
-    quantity = 1 
     if request.method == "POST":
         rating = request.POST.get('review-rating')
         comment = request.POST.get('review')
@@ -68,8 +77,8 @@ def add_product(request):
         product.description = request.POST['product_desc']
         product.category = request.POST['product_category']
         product.plan_name = request.POST['product_plan_name']
-        product.price = request.POST['product_price']
-        product.discount = request.POST['product_discount']
+        product.price = round(request.POST['product_price'], 2)
+        product.discount = round(request.POST['product_discount'], )
         product.slug = f"{product.name}_{product.plan_name}".replace(" ", "")
         if request.FILES.get('product_image'):
             image_file = request.FILES.get('product_image')
@@ -142,6 +151,3 @@ def wishlist(request,id):
         'wish_list': wish_list,
     }
     return render(request,'wishlist.html',context)
-
-
-
