@@ -23,7 +23,7 @@
       <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 col-12">
         <div class="account_form">
           <h3>Register</h3>
-          <form action="{% url 'register' %}" method="POST">
+          <form action="{% url 'account:register' %}" method="POST">
             {% csrf_token %}
             <div class="default-form-box">
               <label>Username <span>*</span></label>

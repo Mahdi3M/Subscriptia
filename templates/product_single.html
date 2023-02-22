@@ -102,32 +102,19 @@
                         <ul class="nav nav-tabs">
                             <li><a data-bs-toggle="tab" data-bs-target="#description" href="#!"
                                     class="active">Description</a></li>
-                            <li><a data-bs-toggle="tab" data-bs-target="#additional" href="#!">Additional
-                                    Information</a></li>
-                            <li><a data-bs-toggle="tab" data-bs-target="#review" href="#!">Review</a></li>
+                            <li><a data-bs-toggle="tab" data-bs-target="#review" href="#!">Reviews</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="description" class="tab-pane fade in show active">
                                 <div class="product_description">{{product.description}}
                                 </div>
                             </div>
-                            <div id="additional" class="tab-pane fade">
-                                <div class="product_additional">
-                                    <ul>
-                                        <li>Weight: <span>400 g</span></li>
-                                        <li>Dimensions: <span>10 x 10 x 15 cm</span></li>
-                                        <li>Materials: <span> 60% cotton, 40% polyester</span></li>
-                                        <li>Other Info: <span> American heirloom jean shorts pug seitan
-                                                letterpress</span></li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div id="review" class="tab-pane fade">
                                 <div class="product_reviews">
                                     <ul>
-                                        <li>
-                                            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-                                            <form action="" method="post" enctype="multipart/form-data" class="add_review_form">
+                                        {% if request.user.is_authenticated %}
+                                        <li>                                            
+                                            <form action="" method="post" class="add_review_form" id="form_for_review">
                                                 {% csrf_token %}
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -155,52 +142,64 @@
                                                             <label for="id_description">Comment</label>
                                                             <textarea style="min-height: 200px;" id="id_description" class="form-control" name="review"></textarea>
                                                         </div>
-                                                    </div>                          
-                                                    <div class="col-lg-12">
-                                                        <div class="btn_right_table">
-                                                            <button class="theme-btn-one bg-black btn_sm" type='submit'>Add Review</button>
+                                                    </div>          
+                                                    <center class="clear">                                                                    
+                                                        <button class="theme-btn-one btn_md" type="submit" style="margin-top: 60px;height: 83px;width: 237px;font-size: 20px;font-size: 20px;-size:52px;color: black;">
+                                                            <i class="icon-cursor"></i>Add Review
+                                                        </button>                                                           
+                                                    </center>             
+                                                    {% comment %} {% else %}
+                                                    <div class="mc-form me">
+                                                        <center class="clear">                                                                    
+                                                                <button class="theme-btn-one btn_md" type="submit" name="subscribe" style="margin-top: 60px; height: 186px;width: 316px;font-size: 40px;font-size: 40px;-size:52px;color: black;">
+                                                                    <i class="icon-cursor"></i><a href="{% url 'account:login' %}">Create an Account
+                                                                 </a></button>
+                                                           
+                                                        </center>
+                                                    </div>                                               {% endcomment %}
+                                                </div>
+                                            </form>                                            
+                                        </li>{% endif %}
+                                        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+                                            {% for comment in review_comments %}
+                                                <li class="media d-flex">
+                                                    <div class="media-img flex-shrink-0">
+                                                        <img src="{{ comment.review.user.profile.image.url }}" alt="img">
+                                                    </div>
+                                                    <div class="media-body flex-grow-1 ms-3">
+                                                        <div class="media-header">
+                                                            <div class="media-name">
+                                                                <h4>{{ comment.review.user.username }}</h4>
+                                                                <p>{{ comment.created_at }}</p>
+                                                            </div>
+                                                            {% comment %} <div class="post-share">
+                                                                <a href="#!" class="replay">Replay</a>
+                                                                <a href="#!" class="">Report</a>
+                                                            </div> {% endcomment %}
+                                                        </div>
+                                                        <div class="media-pragraph">
+                                                            <div class="product_review_strat">
+                                                                {% if comment.review.rating > 0 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                                {% if comment.review.rating > 1 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                                {% if comment.review.rating > 2 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                                {% if comment.review.rating > 3 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                                {% if comment.review.rating > 4 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
+                                                            </div>
+                                                            <p>{{ comment.comment }}</p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </form>
-                                            {% comment %} {% else %}
-                                            <div class="col-lg-12">
-                                                <div class="btn_right_table">
-                                                    <button class="theme-btn-one bg-black btn_sm"><a href="register.html">Create an Accont</a></button>
-                                                </div>
-                                            </div>
-                                            {% endif %} {% endcomment %}
-                                        </li>
-                                        {% for comment in review_comments %}
-                                            <li class="media d-flex">
-                                                <div class="media-img flex-shrink-0">
-                                                    <img src="{{ comment.review.user.profile.image.url }}" alt="img">
-                                                </div>
-                                                <div class="media-body flex-grow-1 ms-3">
-                                                    <div class="media-header">
-                                                        <div class="media-name">
-                                                            <h4>{{ comment.review.user.username }}</h4>
-                                                            <p>{{ comment.created_at }}</p>
-                                                        </div>
-                                                        {% comment %} <div class="post-share">
-                                                            <a href="#!" class="replay">Replay</a>
-                                                            <a href="#!" class="">Report</a>
-                                                        </div> {% endcomment %}
-                                                    </div>
-                                                    <div class="media-pragraph">
-                                                        <div class="product_review_strat">
-                                                            {% if comment.review.rating > 0 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
-                                                            {% if comment.review.rating > 1 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
-                                                            {% if comment.review.rating > 2 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
-                                                            {% if comment.review.rating > 3 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
-                                                            {% if comment.review.rating > 4 %}<span><a href="#!"><i class="fas fa-star"></i></a></span>{% endif %}
-                                                        </div>
-                                                        <p>{{ comment.comment }}</p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        {% endfor %}
+                                                </li>
+                                            {% endfor %}
+                                        {% comment %} {% endif %}                                         {% endcomment %}
                                     </ul>
+                                    <div class="mc-form me">
+                                        <center class="clear">                                                                    
+                                                <button class="theme-btn-one btn_md" type="submit" name="subscribe" style="margin-top: 60px; height: 186px;width: 316px;font-size: 40px;font-size: 40px;-size:52px;color: black;">
+                                                    <i class="icon-cursor"></i><a href="{% url 'account:login' %}">Create an Account
+                                                 </a></button>
+                                           
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>

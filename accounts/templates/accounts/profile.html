@@ -37,7 +37,7 @@
                                         class="fas fa-user"></i>Account
                                     details</a>
                             </li>
-                            <li><a href="{% url 'logout' %}" class=""><i class="fas fa-sign-out-alt"></i>logout</a></li>
+                            <li><a href="{% url 'account:logout' %}" class=""><i class="fas fa-sign-out-alt"></i>logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                                 <h4 class="title">Account details</h4>
                                 <div class="login_form_container">
                                     <div class="account_details_form">
-                                        <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+                                        <form action="{% url 'account:profile' %}" method="POST" enctype="multipart/form-data">
                                             {% csrf_token %}
                                             <div class="img_profiles">
                                                 <img src="{{ profile.image.url }}" alt="img">

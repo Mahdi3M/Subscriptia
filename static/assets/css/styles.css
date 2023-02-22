@@ -266,6 +266,7 @@ ul li {
     letter-spacing: 2px;
     display: inline-block;
     border-radius: 0;
+    color: white;
 }
 
 .btn_md {
@@ -8471,4 +8472,9 @@ table {
 .product_detail_socials h6 {
     font-size: 16px;
     font-weight: 700;
+}
+
+.review_dummy_btn a:hover {
+    background-color: white;
+    color: black;
 }
