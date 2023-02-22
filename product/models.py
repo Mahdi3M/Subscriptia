@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import *
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
@@ -9,11 +10,14 @@ CATEGORIES = (('None', 'None'), ('News', 'News'), ('Books', 'Books'), ('Streamin
  ('E-commerce', 'E-commerce'), ('Photos', 'Photo Editing'), ('Videos', 'Video Editing'), ('Music', 'Music'))
 
 
+RANGE = ((0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=1000, default="")
     slug = models.SlugField(unique=True, max_length=30)
-    rating = models.PositiveIntegerField(default=0)
+    rating = models.PositiveIntegerField(default=0, choices=RANGE)
     rating_amount = models.PositiveBigIntegerField(default=0)
     in_wishlist = models.PositiveIntegerField(default=0)
     in_cart = models.PositiveIntegerField(default=0)
