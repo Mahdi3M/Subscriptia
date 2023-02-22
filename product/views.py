@@ -124,6 +124,7 @@ def r_add_to_cart(request,id):
         'subtotal': subtotal,
     }
     return render(request, 'add_to_cart.html',context)
+    
 def invoice(request):
     user = request.user
     cart = CartProduct.objects.all().filter(user=user)
@@ -144,12 +145,14 @@ def invoice(request):
     # print(cart)
     subtotal=int(subtotal)
     order = Order.objects.filter(user=user)
+    r= random.randint(0,100000)
     for o in order:
         subtotal += float(o.product.price)
         print(subtotal)
     context = {
         'order': order,
         'subtotal': subtotal,
+        'r' : r,
     }
     return render(request,'invoice.html',context)
 
