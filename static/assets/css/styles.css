@@ -2349,7 +2349,7 @@ label {
     width: 80%;
     height: 45px;
     line-height: 45px;
-    background-color: #fff;
+    background-color: #d8c5b69b;
     text-align: center;
     border: 0;
     border-radius: 3px;
@@ -2364,7 +2364,7 @@ label {
     visibility: hidden;
     transition: all 0.3s ease 0s;
     transform: translateY(20px);
-    color: #3f3f3f;
+    color: #00000069;
     opacity: 0;
     font-family: Raleway, sans-serif;
 }
@@ -2381,7 +2381,7 @@ label {
     padding: 20px 15px 23px 15px;
     transition: all 0.3s ease 0s;
     text-align: center;
-    background-color: #fff;
+    background-color: #fff9f9cb;
 }
 
 .product_wrappers_one .content .title {
