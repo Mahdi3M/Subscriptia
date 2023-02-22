@@ -16,6 +16,9 @@ def cardview(request):
     'prices': prices,   
      })
 
+def about_us(request):
+    return render(request, 'about_us.html')
+
 def product_single(request, product_id):
     product = Product.objects.get(id=product_id)
     products = list(Product.objects.filter(name=product.name))

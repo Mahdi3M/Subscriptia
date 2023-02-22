@@ -287,7 +287,7 @@ ul li {
 }
 
 #common_banner_one {
-    background-color: red;
+    background-image: url('../img/common/commonbg.jpg');
     padding: 90px 0;
     background-repeat: no-repeat;
 }
@@ -295,10 +295,13 @@ ul li {
 .common_banner_text {
     text-align: center;
     color: #fff;
+    
 }
 
 .common_banner_text h2 {
     color: #fff;
+    font-weight: 800;
+    text-shadow: 2px 2px #000000bc;
 }
 
 .common_banner_text ul {
@@ -309,10 +312,14 @@ ul li {
 
 .common_banner_text ul li {
     color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px #322e2ebc;
 }
 
 .common_banner_text ul li.active {
     color: var(--main-theme-color);
+    text-shadow: 1px 1px #ffda21d4;
+    
 }
 
 .common_banner_text ul li i {
