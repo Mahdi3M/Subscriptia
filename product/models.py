@@ -58,3 +58,11 @@ class ReviewComment(models.Model):
     
     class Meta:
         ordering = ('created_at',)
+
+
+class Wishlist_Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.id)

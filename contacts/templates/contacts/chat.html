@@ -1,0 +1,193 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- Blog Single Area -->
+<section id="blog_single_area" class="ptb-100">
+  <div class="container">
+    <div class="blog_single_content">
+      <div>
+        <div class="content_title"><h3>Question & Answer</h3></div>
+
+        <ul class="list_none comment_list">
+          {% for question in questions %}
+          <li
+            class="comment_info"
+            style="
+              background-color: blanchedalmond;
+              padding: 1%;
+              border-radius: 2%;
+              box-shadow: 5px 5px 5px lightsalmon;
+            "
+          >
+            <div class="d-flex">
+              <div class="comment_content">
+                <div class="d-flex">
+                  <div class="meta_data">
+                    <h5>
+                      <a href="{% url 'profile' %}"
+                        >{{ question.user.username }}</a
+                      >
+                    </h5>
+                  </div>
+                </div>
+                <br />
+
+                <h6>Question</h6>
+                <p>{{ question.ques }}</p>
+                {% if request.user.is_employee and question.ans == None %}
+                <button
+                  type="button"
+                  class="btn btn-outline-warning btn-sm"
+                  id="reply_ques"
+                >
+                  Reply</button>
+                {% endif %}
+              </div>
+            </div>
+            {% if question.ans %}
+            <div class="children">
+              <div class="d-flex">
+                <div class="comment_content">
+                  <h6>Answer</h6>
+                  <p>{{ question.ans }}</p>
+                </div>
+              </div>
+            </div>
+            {% elif request.user.is_employee %}
+            <div class="children" style="display: none">
+              <div>
+                <div class="comment_content">
+                  <h6>Answer</h6>
+
+                  <form
+                    class="field_form"
+                    action="{% url 'chat' %}"
+                    method="POST"
+                  >
+                    {% csrf_token %}
+                    <div class="row">
+                      <input name="ques-id" style="visibility: hidden" value="{{ question.id }}">
+                      <div class="form-group">
+                        <textarea
+                          rows="3"
+                          name="answer"
+                          class="form-control"
+                          placeholder="Your Answer"
+                          required="required"
+                        ></textarea>
+                      </div>
+                      <div class="form-group">
+                        <button
+                          value="Submit"
+                          name="submit-reply"
+                          class="btn btn-warning btn-sm"
+                          title="Submit Your Message!"
+                          type="submit"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </li>
+          <br />
+          {% endfor %}
+          <li
+            class="comment_info"
+            style="
+              background-color: blanchedalmond;
+              padding: 1%;
+              border-radius: 2%;
+              box-shadow: 5px 5px 5px lightsalmon;
+            "
+          >
+            <div class="d-flex">
+              <div class="comment_content">
+                <div class="d-flex">
+                  <div class="meta_data">
+                    <h5><a href="#">Mohtasim Nur Sara</a></h5>
+                  </div>
+                </div>
+                <br />
+
+                <h6>Question</h6>
+                <p>
+                  We denounce with righteous indignation and dislike men who are
+                  so beguiled and demoralized by the charms of pleasure of the
+                  moment, so blinded by desire that the cannot foresee the pain
+                  and trouble that.
+                </p>
+              </div>
+            </div>
+
+            <div class="children">
+              <div class="d-flex">
+                <div class="comment_content">
+                  <h6>Answer</h6>
+
+                  <p>
+                    We denounce with righteous indignation and dislike men who
+                    are so beguiled and demoralized by the charms of pleasure of
+                    the moment, so blinded by desire that the cannot foresee the
+                    pain and trouble that.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <br /><br />
+
+      <div style="background-color: palegoldenrod; padding: 2%">
+        <div>
+          <h3>Ask a Question</h3>
+        </div>
+        <br />
+        <form action="{% url 'chat' %}" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="form-group col-md-12">
+              <textarea
+                rows="5"
+                name="question"
+                class="form-control"
+                placeholder="Your Question"
+                required="required"
+              ></textarea>
+            </div>
+            <div class="form-group col-md-12">
+              <button
+                value="Submit"
+                name="submit-question"
+                class="theme-btn-one btn_md btn-black-overlay"
+                title="Submit Your Question!"
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %} {% block scripts %}
+<script>
+  let reply_arr = document.querySelectorAll("#reply_ques");
+  for (let i = 0; i < reply_arr.length; i++) {
+    reply_arr[i].addEventListener("click", function (e) {
+      let par = e.target.parentNode.parentNode.parentNode;
+      let ch = par.children[1];
+      if (ch.style.display === "none") {
+        ch.style.display = "block";
+      } else {
+        ch.style.display = "none";
+      }
+    });
+  }
+</script>
+{% endblock scripts %}

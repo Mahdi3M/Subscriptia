@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.urls import reverse
 from .models import *
+from django.db.models import Q
 
 # Create your views here.
 
@@ -90,7 +91,6 @@ def add_to_cart(request,id):
         context = {
             'cart': cart,
         }
-        print(e)
         return render(request, 'add_to_cart.html', context)
 
     cart = CartProduct.objects.filter(user=user)
@@ -103,3 +103,37 @@ def add_to_cart(request,id):
 
 def invoice(request):
     return render(request,'invoice.html')
+
+def r_wishlist(request,id):
+    user = request.user
+    product = Product.objects.get(id=id)
+    wish_list = Wishlist_Product.objects.filter(Q(product=product) & Q(user=user))
+    wish_list.delete()
+    wish_list = Wishlist_Product.objects.filter(user=user)
+    context = {
+        'wish_list': wish_list,
+    }
+    return render(request, 'wishlist.html',context)
+def wishlist(request,id):
+    product = Product.objects.get(id=id)
+    user = request.user
+    wish = Wishlist_Product(user=user, product=product)
+    try:
+        wish.save()
+    except Exception as e:
+        wish_list = Wishlist_Product.objects.filter(user=user)
+        # for c in cart:
+        #     print(c.product.name)
+        context = {
+            'wish_list': wish_list,
+        }
+        return render(request,'wishlist.html',context)
+
+    wish_list = Wishlist_Product.objects.filter(user=user)
+    context = {
+        'wish_list': wish_list,
+    }
+    return render(request,'wishlist.html',context)
+
+
+
