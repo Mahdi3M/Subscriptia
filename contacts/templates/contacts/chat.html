@@ -38,7 +38,8 @@
                   class="btn btn-outline-warning btn-sm"
                   id="reply_ques"
                 >
-                  Reply</button>
+                  Reply
+                </button>
                 {% endif %}
               </div>
             </div>
@@ -64,7 +65,6 @@
                   >
                     {% csrf_token %}
                     <div class="row">
-                      <input name="ques-id" style="visibility: hidden" value="{{ question.id }}">
                       <div class="form-group">
                         <textarea
                           rows="3"
@@ -84,6 +84,11 @@
                         >
                           Submit
                         </button>
+                        <input
+                          name="ques-id"
+                          style="visibility: hidden"
+                          value="{{ question.id }}"
+                        />
                       </div>
                     </div>
                   </form>
@@ -94,53 +99,10 @@
           </li>
           <br />
           {% endfor %}
-          <li
-            class="comment_info"
-            style="
-              background-color: blanchedalmond;
-              padding: 1%;
-              border-radius: 2%;
-              box-shadow: 5px 5px 5px lightsalmon;
-            "
-          >
-            <div class="d-flex">
-              <div class="comment_content">
-                <div class="d-flex">
-                  <div class="meta_data">
-                    <h5><a href="#">Mohtasim Nur Sara</a></h5>
-                  </div>
-                </div>
-                <br />
-
-                <h6>Question</h6>
-                <p>
-                  We denounce with righteous indignation and dislike men who are
-                  so beguiled and demoralized by the charms of pleasure of the
-                  moment, so blinded by desire that the cannot foresee the pain
-                  and trouble that.
-                </p>
-              </div>
-            </div>
-
-            <div class="children">
-              <div class="d-flex">
-                <div class="comment_content">
-                  <h6>Answer</h6>
-
-                  <p>
-                    We denounce with righteous indignation and dislike men who
-                    are so beguiled and demoralized by the charms of pleasure of
-                    the moment, so blinded by desire that the cannot foresee the
-                    pain and trouble that.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
         </ul>
       </div>
       <br /><br />
-
+      {% if request.user.is_customer %}
       <div style="background-color: palegoldenrod; padding: 2%">
         <div>
           <h3>Ask a Question</h3>
@@ -172,6 +134,7 @@
           </div>
         </form>
       </div>
+      {% endif %}
     </div>
   </div>
 </section>
