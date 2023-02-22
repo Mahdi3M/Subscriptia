@@ -4,3 +4,7 @@ from .models import *
 # Register your models here.
 
 admin.site.register(Product)
+admin.site.register(Review)
+admin.site.register(ReviewComment)
+admin.site.register(CartProduct)
+admin.site.register(Wishlist_Product)
