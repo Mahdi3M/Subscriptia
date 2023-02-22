@@ -26,8 +26,8 @@ class Product(models.Model):
     category = models.CharField(
         max_length=200, choices=CATEGORIES, default=None)
 
-    def __str__(self):
-        return f'{self.name}: {self.description}'
+    # def __str__(self):
+    #     return f'{self.name}: {self.description}'
 
 
 class BannerImg(models.Model):
