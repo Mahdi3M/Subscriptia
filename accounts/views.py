@@ -40,7 +40,7 @@ def register(request):
                 myuser.save()
                 profile = Profile(user=myuser)
                 profile.save()
-                return redirect('login')
+                return redirect('account:login')
             except Exception:
                 form_msg = "Username already taken."
                 return render(request, "accounts/register.html", {'form_msg': form_msg})
@@ -53,7 +53,7 @@ def register(request):
 
 def log_out(request):
     logout(request)
-    return redirect('login')
+    return redirect('account:login')
 
 def profile(request):
     user = request.user
@@ -72,7 +72,7 @@ def profile(request):
             user.set_password(pword)
             user.save()
             logout(request)
-            return redirect('login')
+            return redirect('account:login')
         user.save()
     return render(request, "accounts/profile.html", {"user": user, "profile":profile})
 

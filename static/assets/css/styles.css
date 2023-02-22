@@ -266,6 +266,7 @@ ul li {
     letter-spacing: 2px;
     display: inline-block;
     border-radius: 0;
+    color: white;
 }
 
 .btn_md {
@@ -287,7 +288,7 @@ ul li {
 }
 
 #common_banner_one {
-    background-color: red;
+    background-image: url('../img/common/commonbg.jpg');
     padding: 90px 0;
     background-repeat: no-repeat;
 }
@@ -295,10 +296,13 @@ ul li {
 .common_banner_text {
     text-align: center;
     color: #fff;
+    
 }
 
 .common_banner_text h2 {
     color: #fff;
+    font-weight: 800;
+    text-shadow: 2px 2px #000000bc;
 }
 
 .common_banner_text ul {
@@ -309,10 +313,14 @@ ul li {
 
 .common_banner_text ul li {
     color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px #322e2ebc;
 }
 
 .common_banner_text ul li.active {
     color: var(--main-theme-color);
+    text-shadow: 1px 1px #ffda21d4;
+    
 }
 
 .common_banner_text ul li i {
@@ -2289,6 +2297,10 @@ label {
     background-color: #007a58;
 }
 
+.product_wrappers_one .thumb .badges span.best {
+    background-color: #d83927;
+}
+
 .product_wrappers_one .thumb .badges span.hot {
     background-color: var(--main-theme-color);
 }
@@ -2349,7 +2361,7 @@ label {
     width: 80%;
     height: 45px;
     line-height: 45px;
-    background-color: #fff;
+    background-color: #d8c5b69b;
     text-align: center;
     border: 0;
     border-radius: 3px;
@@ -2364,7 +2376,7 @@ label {
     visibility: hidden;
     transition: all 0.3s ease 0s;
     transform: translateY(20px);
-    color: #3f3f3f;
+    color: #00000069;
     opacity: 0;
     font-family: Raleway, sans-serif;
 }
@@ -2381,7 +2393,7 @@ label {
     padding: 20px 15px 23px 15px;
     transition: all 0.3s ease 0s;
     text-align: center;
-    background-color: #fff;
+    background-color: #fff9f9cb;
 }
 
 .product_wrappers_one .content .title {
@@ -8460,4 +8472,9 @@ table {
 .product_detail_socials h6 {
     font-size: 16px;
     font-weight: 700;
+}
+
+.review_dummy_btn a:hover {
+    background-color: white;
+    color: black;
 }

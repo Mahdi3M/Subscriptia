@@ -23,6 +23,76 @@
     </div>
 </section>
 
+<!-- To Days Area -->
+<section id="to_days_area" class="ptb-100 slider_arrows_one">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="center_heading">
+                    <h2>Our Products</h2>
+                    <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="todays_slider owl-carousel owl-them">
+                    {% for p in products %}
+                    <div class="product_wrappers_one">
+                        <div class="thumb">
+                            <a href="product_single.html" class="image">
+                                {% if p.image %}
+                                <img src="{{p.image.url}}" style="height:300px; width:800px;" alt="img" />
+                                {% endif %}
+                                
+                              </a>
+                            <div class="actions">
+                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                        class="far fa-heart"></i></a>
+                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
+                                        class="fas fa-expand"></i></a>
+                            </div>
+                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
+                                data-bs-target="#shoppingCartModal">
+                                Add To Cart
+                            </button>
+                        </div>
+                        <div class="content">
+                            <h5 class="title">
+                                <a href="product-single.html">{{p.name}}</a>
+                            </h5>
+                            <span class="price">
+                                <span class="new">
+                                {% if p.discount != 0.00 %}
+                                    <i style="color: red">                                                                        
+                                        <del>${{p.price}}</del>
+                                    </i>
+                                    {% for i in prices %}
+                                    {% if i.0 == p.id %}
+                                        <h4 style="color: red" >                                                                        
+                                            ${{i.1}}
+                                    </h4>
+                                    {% endif %}
+                                    {% endfor %}
+                                    
+                                {% else %}
+                                    <h4>
+                                        ${{p.price}}
+                                    </h4>
+                                {% endif %}
+
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Hot Product Area -->
 <section id="hot_Product_area" class="ptb-100">
     <div class="container">
@@ -50,7 +120,7 @@
                         <li role="presentation"><a data-bs-toggle="tab" data-bs-target="#featured"
                                 href="#!">Featured</a></li>
                         <li role="presentation"><a data-bs-toggle="tab" data-bs-target="#on_sall" href="#!">On
-                                sall</a></li>
+                                sale</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,840 +129,302 @@
                     <div class="tab-content" id="myTabContent">
                         <div id="new_arrival" class="tab-pane fade show in active" role="tabpanel">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/netflix2.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/netflix1.jpg' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product3.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product4.png' %}"
-                                                    alt="Product" />
-                                            </a>
-
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product7.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product8.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#!" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter">
-                                                    <i class="fas fa-expand"></i>
+                                {% for product in new_products %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                        <div class="product_wrappers_one">
+                                            <div class="thumb">
+                                                <a href="product-single.html" class="image">
+                                                    {% if product.image %}
+                                                        <img src="{{product.image.url}}" style="height: 300px; width: 800px;" alt="Product" />
+                                                    {% endif %}
                                                 </a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
+                                                <span class="badges">
+                                                    <span class="new">new</span>
+                                                </span>
+                                                <div class="actions">
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                            class="far fa-heart"></i></a>
+                                                    <a href="#" class="action quickview" data-link-action="quickview"
+                                                        title="Quick view" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCenter"><i
+                                                            class="fas fa-expand"></i></a>
+                                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                                            class="fas fa-exchange-alt"></i></a>
+                                                </div>
+                                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                    data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
+                                                    Cart</button>
                                             </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
+                                            <div class="content">
+                                                <h5 class="title">
+                                                    <a href="product-single.html">{{product.name}}</a>
+                                                </h5>
+                                                <span class="price">
+                                                    <span class="new">
+                                                    {% if product.discount != 0.00 %}
+                                                        <i style="color: orange">                                                                        
+                                                            <del>${{product.price}}</del>
+                                                        </i>
+                                                        {% for i in prices %}
+                                                        {% if i.0 == product.id %}
+                                                            <h4 style="color: red" >                                                                        
+                                                                ${{i.1}}
+                                                        </h4>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    {% else %}
+                                                        <h4>
+                                                            ${{product.price}}
+                                                        </h4>
+                                                    {% endif %}
+                    
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product9.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product10.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dress</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product11.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product12.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Black T-Shirt For Woman
-                                                </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product13.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product14.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="trending" class="tab-pane fade" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product1.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product2.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product3.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product4.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product7.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product8.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#!" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter">
-                                                    <i class="fas fa-expand"></i>
-                                                </a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="best_sellers" class="tab-pane fade" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product9.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product10.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dress</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product11.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product12.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Black T-Shirt For Woman
-                                                </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product13.png' %}" alt="Product" />
-                                                <img class="hover-image"
-                                                    src="{% static 'assets/img/product-image/product14.png' %}" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">
-                                                Add To Cart
-                                            </button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="featured" class="tab-pane fade" role="tabpanel">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product1.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product2.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product3.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product4.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product7.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product8.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#!" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter">
-                                                    <i class="fas fa-expand"></i>
-                                                </a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
-                                            </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}                                
                             </div>
                         </div>
                         <div id="on_sall" class="tab-pane fade" role="tabpanel">
                             <div class="row">
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product1.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product2.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
+                                {% for product in sale_products %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                        <div class="product_wrappers_one">
+                                            <div class="thumb">
+                                                <a href="product-single.html" class="image">
+                                                    {% if product.image %}
+                                                        <img src="{{product.image.url}}" style="height: 300px; width: 800px;" alt="Product" />
+                                                    {% endif %}
+                                                </a>
+                                                <span class="badges">
+                                                    <span class="best">-{{product.discount}}%</span>
+                                                </span>
+                                                <div class="actions">
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                            class="far fa-heart"></i></a>
+                                                    <a href="#" class="action quickview" data-link-action="quickview"
+                                                        title="Quick view" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCenter"><i
+                                                            class="fas fa-expand"></i></a>
+                                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                                            class="fas fa-exchange-alt"></i></a>
+                                                </div>
+                                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                    data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
+                                                    Cart</button>
                                             </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
+                                            <div class="content">
+                                                <h5 class="title">
+                                                    <a href="product-single.html">{{product.name}}</a>
+                                                </h5>
+                                                <span class="price">
+                                                    <span class="new">
+                                                    {% if product.discount != 0.00 %}
+                                                        <i style="color: orange">                                                                        
+                                                            <del>${{product.price}}</del>
+                                                        </i>
+                                                        {% for i in prices %}
+                                                        {% if i.0 == product.id %}
+                                                            <h4 style="color: red" >                                                                        
+                                                                ${{i.1}}
+                                                        </h4>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    {% else %}
+                                                        <h4>
+                                                            ${{product.price}}
+                                                        </h4>
+                                                    {% endif %}
+                    
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product3.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product4.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
+                                {% endfor %}                                
+                            </div>
+                        </div>
+                        <div id="best_sellers" class="tab-pane fade" role="tabpanel">
+                            <div class="row">
+                                {% for product in best_products %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                        <div class="product_wrappers_one">
+                                            <div class="thumb">
+                                                <a href="product-single.html" class="image">
+                                                    {% if product.image %}
+                                                        <img src="{{product.image.url}}" style="height: 300px; width: 800px;" alt="Product" />
+                                                    {% endif %}
+                                                </a>
+                                                <span class="badges">
+                                                    <span class="best">#{{forloop.counter}}</span>
+                                                </span>
+                                                <div class="actions">
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                            class="far fa-heart"></i></a>
+                                                    <a href="#" class="action quickview" data-link-action="quickview"
+                                                        title="Quick view" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCenter"><i
+                                                            class="fas fa-expand"></i></a>
+                                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                                            class="fas fa-exchange-alt"></i></a>
+                                                </div>
+                                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                    data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
+                                                    Cart</button>
                                             </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
+                                            <div class="content">
+                                                <h5 class="title">
+                                                    <a href="product-single.html">{{product.name}}</a>
+                                                </h5>
+                                                <span class="price">
+                                                    <span class="new">
+                                                    {% if product.discount != 0.00 %}
+                                                        <i style="color: orange">                                                                        
+                                                            <del>${{product.price}}</del>
+                                                        </i>
+                                                        {% for i in prices %}
+                                                        {% if i.0 == product.id %}
+                                                            <h4 style="color: red" >                                                                        
+                                                                ${{i.1}}
+                                                        </h4>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    {% else %}
+                                                        <h4>
+                                                            ${{product.price}}
+                                                        </h4>
+                                                    {% endif %}
+                    
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
+                                    </div> 
+                                {% endfor %}                               
+                            </div>
+                        </div>
+                        <div id="featured" class="tab-pane fade" role="tabpanel">
+                            <div class="row">                                
+                                {% for product in featured_products %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                        <div class="product_wrappers_one">
+                                            <div class="thumb">
+                                                <a href="product-single.html" class="image">
+                                                    {% if product.image %}
+                                                        <img src="{{product.image.url}}" style="height: 300px; width: 800px;" alt="Product" />
+                                                    {% endif %}
+                                                </a>
+                                                {% comment %} <span class="badges">
+                                                    <span class="best">#{{forloop.counter}}</span>
+                                                </span> {% endcomment %}
+                                                <div class="actions">
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                            class="far fa-heart"></i></a>
+                                                    <a href="#" class="action quickview" data-link-action="quickview"
+                                                        title="Quick view" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCenter"><i
+                                                            class="fas fa-expand"></i></a>
+                                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                                            class="fas fa-exchange-alt"></i></a>
+                                                </div>
+                                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                    data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
+                                                    Cart</button>
+                                            </div>
+                                            <div class="content">
+                                                <h5 class="title">
+                                                    <a href="product-single.html">{{product.name}}</a>
+                                                </h5>
+                                                <span class="price">
+                                                    <span class="new">
+                                                    {% if product.discount != 0.00 %}
+                                                        <i style="color: orange">                                                                        
+                                                            <del>${{product.price}}</del>
+                                                        </i>
+                                                        {% for i in prices %}
+                                                        {% if i.0 == product.id %}
+                                                            <h4 style="color: red" >                                                                        
+                                                                ${{i.1}}
+                                                        </h4>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    {% else %}
+                                                        <h4>
+                                                            ${{product.price}}
+                                                        </h4>
+                                                    {% endif %}
+                    
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="product_wrappers_one">
-                                        <div class="thumb">
-                                            <a href="product-single.html" class="image">
-                                                <img src="{% static 'assets/img/product-image/product5.png' %}" alt="Product" />
-                                                <img class="hover-image" src="{% static 'assets/img/product-image/product6.png' %}"
-                                                    alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="hot">Hot</span>
-                                            </span>
-                                            <div class="actions">
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                                        class="far fa-heart"></i></a>
-                                                <a href="#" class="action quickview" data-link-action="quickview"
-                                                    title="Quick view" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModalCenter"><i
-                                                        class="fas fa-expand"></i></a>
-                                                <a href="compare.html" class="action compare" title="Compare"><i
-                                                        class="fas fa-exchange-alt"></i></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div id="trending" class="tab-pane fade" role="tabpanel">
+                            <div class="row">  
+                                {% for product in trending_products %}
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                        <div class="product_wrappers_one">
+                                            <div class="thumb">
+                                                <a href="product-single.html" class="image">
+                                                    {% if product.image %}
+                                                        <img src="{{product.image.url}}" style="height: 300px; width: 800px;" alt="Product" />
+                                                    {% endif %}
+                                                </a>
+                                                <span class="badges">
+                                                    <span class="best">#{{forloop.counter}}</span>
+                                                </span>
+                                                <div class="actions">
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
+                                                            class="far fa-heart"></i></a>
+                                                    <a href="#" class="action quickview" data-link-action="quickview"
+                                                        title="Quick view" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCenter"><i
+                                                            class="fas fa-expand"></i></a>
+                                                    <a href="compare.html" class="action compare" title="Compare"><i
+                                                            class="fas fa-exchange-alt"></i></a>
+                                                </div>
+                                                <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
+                                                    data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
+                                                    Cart</button>
                                             </div>
-                                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle"
-                                                data-bs-toggle="modal" data-bs-target="#shoppingCartModal">Add To
-                                                Cart</button>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title">
-                                                <a href="product-single.html">Blue Dress For Woman </a>
-                                            </h5>
-                                            <span class="price">
-                                                <span class="new">$38.50</span>
-                                            </span>
+                                            <div class="content">
+                                                <h5 class="title">
+                                                    <a href="product-single.html">{{product.name}}</a>
+                                                </h5>
+                                                <span class="price">
+                                                    <span class="new">
+                                                    {% if product.discount != 0.00 %}
+                                                        <i style="color: orange">                                                                        
+                                                            <del>${{product.price}}</del>
+                                                        </i>
+                                                        {% for i in prices %}
+                                                        {% if i.0 == product.id %}
+                                                            <h4 style="color: red" >                                                                        
+                                                                ${{i.1}}
+                                                        </h4>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        
+                                                    {% else %}
+                                                        <h4>
+                                                            ${{product.price}}
+                                                        </h4>
+                                                    {% endif %}
+                    
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}                              
                             </div>
                         </div>
                     </div>
@@ -902,238 +434,7 @@
     </div>
 </section>
 
- <!-- Offer Time Area -->
- <section id="offer_timer_one">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 offset-lg-4 col-md-7 offset-md-4 col-sm-12 col-12">
-                <div class="offer_time_flex">
-                    <div class="count_down">
-                        <div id="countdown">
-                            <ul>
-                                <li><span id="days"></span>days</li>
-                                <li><span id="hours"></span>Hours</li>
-                                <li><span id="minutes"></span>Minutes</li>
-                                <li><span id="seconds"></span>Seconds</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="offer_timer_text">
-                        <h2>COMING SOON!!!</h2>
-                        <p>
-                            New amazing offer for netflix is coming soon! Netflix is now offering you subscription for 65days!
-                            Grab your subscription to enjoy.
-                        </p>
-                        <a href="#!" class="theme-btn-one bg-black btn_md">View More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- To Days Area -->
-<section id="to_days_area" class="ptb-100 slider_arrows_one">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="center_heading">
-                    <h2>ToDay's Deal</h2>
-                    <p>Mauris luctus nisi sapien tristique dignissim ornare</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="todays_slider owl-carousel owl-them">
-                    <div class="product_wrappers_one">
-                        <div class="thumb">
-                            <a href="product-single.html" class="image">
-                                <img src="{% static 'assets/img/product-image/netflix2.png' %}" alt="Product" />
-                                <img class="hover-image" src="{% static 'assets/img/product-image/netflix1.jpg' %}"
-                                    alt="Product" />
-                            </a>
-                            <span class="badges">
-                                <span class="hot">Hot</span>
-                            </span>
-                            <div class="actions">
-                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                        class="far fa-heart"></i></a>
-                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
-                                        class="fas fa-expand"></i></a>
-                                <a href="compare.html" class="action compare" title="Compare"><i
-                                        class="fas fa-exchange-alt"></i></a>
-                            </div>
-                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
-                                data-bs-target="#shoppingCartModal">
-                                Add To Cart
-                            </button>
-                        </div>
-                        <div class="content">
-                            <h5 class="title">
-                                <a href="product-single.html">Black T-Shirt For Woman</a>
-                            </h5>
-                            <span class="price">
-                                <span class="new">$38.50</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="product_wrappers_one">
-                        <div class="thumb">
-                            <a href="product-single.html" class="image">
-                                <img src="{% static 'assets/img/product-image/disneyp2.jpg' %}" alt="Product" />
-                                <img class="hover-image" src="{% static 'assets/img/product-image/disneyp1.jpg' %}"
-                                    alt="Product" />
-                            </a>
-                            <span class="badges">
-                                <span class="new">New</span>
-                            </span>
-                            <div class="actions">
-                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                        class="far fa-heart"></i></a>
-                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
-                                        class="fas fa-expand"></i></a>
-                                <a href="compare.html" class="action compare" title="Compare"><i
-                                        class="fas fa-exchange-alt"></i></a>
-                            </div>
-                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
-                                data-bs-target="#shoppingCartModal">
-                                Add To Cart
-                            </button>
-                        </div>
-                        <div class="content">
-                            <h5 class="title">
-                                <a href="product-single.html">T-Shirt Form Girls</a>
-                            </h5>
-                            <span class="price">
-                                <span class="new">$38.50</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="product_wrappers_one">
-                        <div class="thumb">
-                            <a href="product-single.html" class="image">
-                                <img src="{% static 'assets/img/product-image/spotify1.png' %}" alt="Product" />
-                                <img class="hover-image" src="{% static 'assets/img/product-image/spotify2.jpg' %}"
-                                    alt="Product" />
-                            </a>
-                            <span class="badges">
-                                <span class="hot">Hot</span>
-                            </span>
-                            <div class="actions">
-                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                        class="far fa-heart"></i></a>
-                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
-                                        class="fas fa-expand"></i></a>
-                                <a href="compare.html" class="action compare" title="Compare"><i
-                                        class="fas fa-exchange-alt"></i></a>
-                            </div>
-                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
-                                data-bs-target="#shoppingCartModal">
-                                Add To Cart
-                            </button>
-                        </div>
-                        <div class="content">
-                            <h5 class="title">
-                                <a href="product-single.html">Blue Dress For Woman</a>
-                            </h5>
-                            <span class="price">
-                                <span class="new">$38.50</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="product_wrappers_one">
-                        <div class="thumb">
-                            <a href="product-single.html" class="image">
-                                <img src="{% static 'assets/img/product-image/bongo1.png' %}" alt="Product" />
-                                <img class="hover-image" src="{% static 'assets/img/product-image/bongo2.png' %}"
-                                    alt="Product" />
-                            </a>
-                            <span class="badges">
-                                <span class="new">New</span>
-                            </span>
-                            <div class="actions">
-                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                        class="far fa-heart"></i></a>
-                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
-                                        class="fas fa-expand"></i></a>
-                                <a href="compare.html" class="action compare" title="Compare"><i
-                                        class="fas fa-exchange-alt"></i></a>
-                            </div>
-                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
-                                data-bs-target="#shoppingCartModal">
-                                Add To Cart
-                            </button>
-                        </div>
-                        <div class="content">
-                            <h5 class="title">
-                                <a href="product-single.html">Woman Full Sliv Dresss</a>
-                            </h5>
-                            <span class="price">
-                                <span class="new">$38.50</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="product_wrappers_one">
-                        <div class="thumb">
-                            <a href="product-single.html" class="image">
-                                <img src="{% static 'assets/img/product-image/hbomax1.jpg' %}" alt="Product" />
-                                <img class="hover-image" src="{% static 'assets/img/product-image/hbomax2.jpg' %}"
-                                    alt="Product" />
-                            </a>
-                            <span class="badges">
-                                <span class="hot">Hot</span>
-                            </span>
-                            <div class="actions">
-                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i
-                                        class="far fa-heart"></i></a>
-                                <a href="#" class="action quickview" data-link-action="quickview" title="Quick view"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter"><i
-                                        class="fas fa-expand"></i></a>
-                                <a href="compare.html" class="action compare" title="Compare"><i
-                                        class="fas fa-exchange-alt"></i></a>
-                            </div>
-                            <button title="Add To Cart" class="add-to-cart offcanvas-toggle" data-bs-toggle="modal"
-                                data-bs-target="#shoppingCartModal">
-                                Add To Cart
-                            </button>
-                        </div>
-                        <div class="content">
-                            <h5 class="title">
-                                <a href="product-single.html">Blue Dress For Woman</a>
-                            </h5>
-                            <span class="price">
-                                <span class="new">$38.50</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Special offer -->
-<section id="special_offer_one">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4 col-md-12 col-sm-12 col-12">
-                <div class="offer_banner_one text-center">
-                    <h5>TRENDING</h5>
-                    <h2>New Fashion</h2>
-                    <p>
-                        Consectetur adipisicing elit. Dolores nisi distinctio magni, iure deserunt doloribus optio
-                    </p>
-                    <a href="#!" class="theme-btn-one bg-whites btn_md">Shop Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Latest Blog Arae -->
 <section id="blog_area_one" class="ptb-100">
@@ -1215,5 +516,62 @@
     </div>
 </section>
 
+ <!-- Offer Time Area -->
+ <section id="offer_timer_one">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-4 col-md-7 offset-md-4 col-sm-12 col-12">
+                <div class="offer_time_flex">
+                    <div class="count_down">
+                        <div id="countdown">
+                            <ul>
+                                <li><span id="days"></span>days</li>
+                                <li><span id="hours"></span>Hours</li>
+                                <li><span id="minutes"></span>Minutes</li>
+                                <li><span id="seconds"></span>Seconds</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offer_timer_text">
+                        <h2>COMING SOON!!!</h2>
+                        <p>
+                            New amazing offer for netflix is coming soon! Netflix is now offering you subscription for 65 days!
+                            Grab your subscription to enjoy.
+                        </p>
+                        <a href="#!" class="theme-btn-one bg-black btn_md">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Special offer -->
+<section id="special_offer_one">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 col-md-12 col-sm-12 col-12">
+                <div class="offer_banner_one text-center">
+                    <h5>TRENDING</h5>
+                    <h2>New Fashion</h2>
+                    <p>
+                        Consectetur adipisicing elit. Dolores nisi distinctio magni, iure deserunt doloribus optio
+                    </p>
+                    <a href="#!" class="theme-btn-one bg-whites btn_md">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- cookie bar start -->
+<div class="cookie-bar">
+    <p>We use cookies to improve our site and your shopping experience. By continuing to browse our site you accept
+        our cookie policy.</p>
+    <a href="javascript:void(0)" class="btn theme-btn-one bg-black btn_sm">accept</a>
+    <a href="javascript:void(0)" class="btn theme-btn-one bg-black btn_sm">decline</a>
+</div>
+<!-- cookie bar end --> 
 
 {% endblock %}

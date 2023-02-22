@@ -26,7 +26,7 @@
                 <div class="col-lg-6 offset-lg-3 col-md-12 col-sm-12 col-12">
                     <div class="account_form">
                         <h3>Login</h3>
-                        <form action="{% url 'login' %}" method="POST">
+                        <form action="{% url 'account:login' %}" method="POST">
                             {% csrf_token %}
                             <div class="default-form-box">
                                 <label>Username <span>*</span></label>
@@ -42,7 +42,7 @@
                                 <button class="theme-btn-one btn-black-overlay btn_md" type="submit">login</button>
                             </div>
 
-                            <a href="{% url 'register' %}">Create Your Account?</a>
+                            <a href="{% url 'account:register' %}">Create Your Account?</a>
                         </form>
                         {% if form_msg %} {{ form_msg }} {% endif %}
                     </div>
